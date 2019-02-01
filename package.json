@@ -5,8 +5,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest && codecov"
   },
+	"jest": {
+		"coverageDirectory": "./coverage/",
+		"collectCoverage": true
+	},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/upcs/cs-341-project-sq19-hotel.git"
