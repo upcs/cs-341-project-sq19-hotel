@@ -1,0 +1,20 @@
+@@ -0,0 +1,19 @@
+{
+  "name": "cs-341-project-sq19-hotel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/upcs/cs-341-project-sq19-hotel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/upcs/cs-341-project-sq19-hotel/issues"
+  },
+  "homepage": "https://github.com/upcs/cs-341-project-sq19-hotel#readme"
+}
