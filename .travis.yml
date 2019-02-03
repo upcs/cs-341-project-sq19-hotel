@@ -6,3 +6,5 @@ install:
  - npm install -g codecov
 script:
  - codecov
+env:
+ - CODECOV_TOKEN = "ae741dc8-fded-4c7c-bc75-df794b4a0182"
