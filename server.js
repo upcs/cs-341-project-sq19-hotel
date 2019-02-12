@@ -1,6 +1,21 @@
+//Import the library
+//const server = require('server');
+
+//Launch the server to always answer "Hello world"
+//server(ctx => 'Hello world!');
+
+
+//Import the library
+// const hostname = '127.0.0.1';
+
+//Launch the server to always answer "Hello world"
+// server(ctx => 'Hello world!');
+
+
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
+
 
 // Create a server
 http.createServer( function (request, response) {  
@@ -22,7 +37,14 @@ http.createServer( function (request, response) {
          //Page found	  
          // HTTP Status: 200 : OK
          // Content Type: text/plain
-         response.writeHead(200, {'Content-Type': 'text/html'});	
+
+//MODIFIED: To accept the css file, if statement to make it read a text/css
+		if (pathname.includes("css")) {
+		    response.writeHead(200, {'Content-Type': 'text/css'});
+			//console.log("hello");
+		} else {
+			response.writeHead(200, {'Content-Type': 'text/html'});	
+		}
          
          // Write the content of the file to response body
          response.write(data.toString());		
@@ -35,3 +57,7 @@ http.createServer( function (request, response) {
 
 // Console will print the message
 console.log('Server running at http://127.0.0.1:8081/');
+
+
+//Resources:
+// http://www.tutorialspoint.com/nodejs/nodejs_web_module.htm
