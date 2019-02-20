@@ -1,10 +1,6 @@
 // Sign Up Functions
 //Communicate with the server and database to send this info
 
-
-emailString = "string1";
-passwordString = "string2";
-
 //Valid Email entered
 function emailEntered(emailString) {
 	
