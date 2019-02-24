@@ -3,15 +3,12 @@
 
 //Valid Email entered
 function emailEntered(emailString) {
-	
-	if (emailString !== null) {
+	var patt = /[a-z]+[1-2]?[0-9]?@up.edu/i;
+	var match = emailString.match(patt);
+	if(match == emailString){
 		return true;
 	}
-	else {
-		return false;
-	}
-	//enter actual test stuff here
-	
+	return false;
 }
 
 //Password matches the requirements
