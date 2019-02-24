@@ -17,6 +17,12 @@ test('nuxoll@gmail.com is not a valid email', () => {
 test('nuxoll@up.edu is a valid email', () => {
 	expect(emailEntered("nuxoll@up.edu")).toBe(true);
 })
+test('schendel21@up.edu is a valid email', () => {
+	expect(emailEntered("schendel21@up.edu")).toBe(true);
+})
+test('schendel211@up.edu is not a valid email', () => {
+	expect(emailEntered("schendel211@up.edu")).toBe(false);
+})
 test('Not a valid UP email', () => {
 	//var a = "hi";
 	expect(emailEntered(null)).toBe(false);

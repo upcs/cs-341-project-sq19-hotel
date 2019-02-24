@@ -3,17 +3,12 @@
 
 //Valid Email entered
 function emailEntered(emailString) {
-	var patt = /[a-z]+[1-2]?[0-9]?@up.edu/i;
-	var match = emailString.match(patt);
-	if(match == emailString){
-		return true;
-	}
-	return false;
+	var patt = new RegExp(/[a-z]+[1-2]?[0-9]?@up.edu/i);
+	return patt.test(emailString);
 }
 
 //Password matches the requirements
 function passwordEntered(passwordString) {
-	
 	if (passwordString !== null) {
 		return true;
 	}
