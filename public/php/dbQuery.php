@@ -1,10 +1,9 @@
 <?php
-//change server, password, and dbname!
-$server = "localhost";
+$server = "35.236.96.52:3306";
 $username = "student";
-$password = "password";
-$dbname = "Hotel";
-//connection
+$password = "intoPDX411";
+$dbname = "UPAF";
+//connect
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 //check
@@ -15,7 +14,7 @@ if($conn->connect_error){
 //SANITIZE INPUTS
 function newAccount($user, $pass){
 	$grad_year = 2021;//get grad year from username(email)
-	$sql = "INSERT INTO accounts (user, pass, banned, grad_year, major1, major2, minor1, minor2, blocked_users) VALUES ($user, $pass, 0, , 0, 0, 0, 0, '');";
+	$sql = "INSERT INTO accounts (user, pass) VALUES ($user, $pass);";
 	if($conn->query($sql) === TRUE) {
 		echo "Account created successfully!";
 	}
@@ -35,7 +34,7 @@ function newPost($title, $body, $user, $id){
 }
 
 function newComment($body, $user, $id)[
-	$sql = "INSERT INTO posts (title, body, score, user, id, edited) VALUES ('', $body, 0, $user, $id, 0);";
+	$sql = "INSERT INTO posts (body, score, user, id, edited) VALUES ($body, 0, $user, $id, 0);";
 	if($conn->query($sql) === TRUE){
 		echo "Post created successfully";
 	}
