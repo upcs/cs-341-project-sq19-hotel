@@ -2,13 +2,13 @@
 //Communicate with the server and database to send this info
 
 //Valid Email entered
-function emailEntered(emailString) {
+exports.emailEntered = function(emailString) {
 	var patt = new RegExp(/[a-z]+[1-2]?[0-9]?@up.edu/i);
 	return patt.test(emailString);
 }
 
 //Password matches the requirements
-function passwordEntered(passwordString) {
+exports.passwordEntered = function(passwordString) {
 	if (passwordString !== null) {
 		return true;
 	}
@@ -16,6 +16,3 @@ function passwordEntered(passwordString) {
 		return false;
 	}
 }
-
-module.exports = emailEntered;
-module.exports = passwordEntered;

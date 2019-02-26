@@ -3,37 +3,32 @@
 //Regulate what the user can enter as their username and password
 
 //Required 
-var emailEntered = require('./signup.js');
-var passwordEntered = require('./signup.js');
+var signup = require('./signup.js');
 
 //Test to see if the email is valid
 test('a is not a valid email', () => {
-	//var a = "hi";
-	expect(emailEntered("a")).toBe(false);
+	expect(signup.emailEntered("a")).toBe(false);
 });
 test('nuxoll@gmail.com is not a valid email', () => {
-	expect(emailEntered("nuxoll@gmail.com")).toBe(false);
+	expect(signup.emailEntered("nuxoll@gmail.com")).toBe(false);
 })
 test('nuxoll@up.edu is a valid email', () => {
-	expect(emailEntered("nuxoll@up.edu")).toBe(true);
+	expect(signup.emailEntered("nuxoll@up.edu")).toBe(true);
 })
 test('schendel21@up.edu is a valid email', () => {
-	expect(emailEntered("schendel21@up.edu")).toBe(true);
+	expect(signup.emailEntered("schendel21@up.edu")).toBe(true);
 })
 test('schendel211@up.edu is not a valid email', () => {
-	expect(emailEntered("schendel211@up.edu")).toBe(false);
+	expect(signup.emailEntered("schendel211@up.edu")).toBe(false);
 })
 test('Not a valid UP email', () => {
-	//var a = "hi";
-	expect(emailEntered(null)).toBe(false);
+	expect(signup.emailEntered(null)).toBe(false);
 });
 
 //Test to see if the email is valid
 test('Needs to be a valid UP email', () => {
-	//var a = "hi";
-	expect(passwordEntered("a")).toBe(true);
+	expect(signup.passwordEntered("a")).toBe(true);
 });
 test('Not a valid UP email', () => {
-	//var a = "hi";
-	expect(passwordEntered(null)).toBe(false);
+	expect(signup.passwordEntered(null)).toBe(false);
 });
