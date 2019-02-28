@@ -17,9 +17,6 @@ test('Maximum 4 characters', () => {
 test('2 characters Min', () => {
 	expect(submitFunctions.validateSubmission('C', '101')).toBe(false);
 });
-test('No numbers in the Name', () => {
-	expect(submitFunctions.validateSubmission('CS2', '101')).toBe(false);
-});
 test('Correct Format', () => {
 	expect(submitFunctions.validateSubmission('CS', '101')).toBe(true);
 });

@@ -20,6 +20,12 @@
     <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
     <!-- Link the functions -->
     <script src = "/javascripts/successSubmissionPost.js"/></script>
+	
+	<!-- After JS, and yes this syntax is correct-->
+	<script  />
+		$(document).ready(submissionPostSetUpMain);
+	</script>
+
 </head>
 
 <body>
@@ -68,16 +74,17 @@
             </div>
         </div>
 
-        <div id="newposttitle">
-            <label for="newtitle">TITLE: </label>
-             <input type="text" id="title" name="title" placeholder="Enter title for new post...">
-        </div>
+		<div id = "newPost">
+			<div id="newPostTitle">
+				<label for="newtitle">TITLE: </label>
+				 <input type="text" id="title" name="title" placeholder="Enter title for new post...">
+			</div>
 
-        <div id = "newpost">
-                <textarea id="text" rows="4" cols="50" placeholder="Enter any educational post here" name="newpost"></textarea><br>
-                <input id ="subbuttonPost" type="submit" value = "SUBMIT NEW POST">
-        </div>
-    
+			<div id = "newPostBody">
+					<textarea id="text" rows="4" cols="50" placeholder="Enter any educational post here..."></textarea><br>
+					<input id ="subbuttonPost" type="submit" value = "SUBMIT NEW POST">
+			</div>
+		</div>
     </div>
 </body>
 
