@@ -6,6 +6,9 @@
 //------------------------------------------------------------------------------
 // Added so when order button is clicked, the form changes to submitted. 
 // "#" is required before the id. "." for class.
+
+const $ = require('jquery');
+
 $(document).ready(function () {
 	$("#subbuttonPost").click(function() {
 		
