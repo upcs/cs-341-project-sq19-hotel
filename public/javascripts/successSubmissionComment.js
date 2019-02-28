@@ -1,26 +1,48 @@
 /*---------------------------------------------------------------------------------- */
-/* CONFIRMATION SUBMISSION
+/* CONFIRMATION SUBMISSION COMMENT
 /* CS 341 | Nuxoll */
 /*----------------------------------------------------------------------------------*/
 
-$(document).ready(function () {
-	$("#comment-button").click(function() {
+//Function that is actually tested using jest and codecov
+function validateSubmissionComment(comment) {
 	
-		console.log("1");
-	
-		// Make the  input consistent 
-		var comment = $("#comment-textarea").val();
+	if(comment == "") {
+		console.log('failed, null');
+		return false;
+	}
+	else { //Passes everything
+		console.log('PASS');
+		return true;
+	}
+}
 
-		console.log("2");
+
+//Function that does all the hard work in conjuction with the html
+function submitClickComment() {
 		
-		// empty comment check
-		if (comment == "") {
-			$(".input-group").after( "<div class=\"alert alert-danger\" role=\"alert\">Comment is empty.</div>" );
-		}
-		else {
-			// Replace comment with submission success
-			$(".input-group").replaceWith( "<div class=\"alert alert-success\" role=\"alert\">Comment submitted!</div>" );
-		}
+	// Make the  input consistent 
+	var comment = $("#comment-textarea").val();
+	
+	console.log(comment);
+		
+	// If statement to determine if vegan was detected, or to proceed.
+	if (!validateSubmissionComment(comment)) {
+		alert("Comment area is invalid.");	
+	}
+	else {
+		//alert("safe"); 
+		$(".input-group").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
+	}
+}
 
-	});
-});
+//Main call that actually starts all the function running
+function submissionCommentSetUpMain() {
+	$("#comment-button").click(submitClickComment);
+}
+
+//Export to test
+//NOTE: THIS WILL THROW AN ERROR ON THE CONSOLE -- "Module is not defined" 
+//This is okay and should be ignored.
+module.exports = {
+	validateSubmissionComment:validateSubmissionComment
+}
