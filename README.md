@@ -20,4 +20,5 @@ Summary of Completed Features:
 *Basic of menu outlined (Home, News, Contact, etc. - some do not work currently)
 *GitHub up to date and working.
 *User login and Sign-up basic setup
+*Successful testing for submission class, post, and comment
 
