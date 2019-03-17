@@ -1,38 +1,51 @@
 // Sign Up Functions
 //Communicate with the server and database to send this info
-//if(emailEntered(emailin) && userEntered(userin) && passwordEntered(passin, repeatPassin){
-
-
+//
 function submit(){
 	console.log("signup received.");
 	var emailin = $('#signupEmail').val();
 	var userin = $('#signupUsername').val();
 	var passin = $('#signupPassword').val();
 	var repeatPassin = $('#signupRepeatPassword').val();
-	$.post("/completeSignup", {email:emailin, user:userin, pass:passin},
-	function(result){
-		alert('Account added!');
-	});
+	var validEmail = true;
+	var validUser = true;
+	var validPass = true;
+	if(!emailEntered(emailin)){
+		alert("Please enter a valid UP email address");
+		validEmail = false;
+	}
+	if(!userEntered(userin)){
+		alert("Please enter a valid username");
+		validUser = false;
+	}
+	if(!passwordEntered(passin, repeatPassin)){
+		alert("Please make sure your passwords match");
+		validPass = false;
+	}
+	if(validEmail && validUser && validPass){
+		alert("Valid account! Submitting.");
+		$.post("/postSignup", {email: emailin, user: userin, pass: passin},
+		function(result){
+		
+		});
+	}
 }
 
 //Valid Email entered
 function emailEntered(emailString) {
-	var patt = new RegExp(/[a-z]+[1-2]?[0-9]?@up.edu/i);
+	var patt = new RegExp("[a-z]+[1-2]?[0-9]?@up.edu");
 	return patt.test(emailString);
 }
 
 function userEntered(userString) {
-	if (userString !== null){
-		return true;
-	}
-	else{
-		return false;
-	}
+	var patt = new RegExp("[a-zA-Z0-9.\-:]+");
+	return patt.test(userString);
 }
 
 //Password matches the requirements
 function passwordEntered(passwordString, repeatPasswordString) {
-	if (passwordString !== null && passwordString === repeatPasswordString) {
+	var patt = new RegExp(".+");
+	if (patt.test(passwordString) && passwordString === repeatPasswordString) {
 		return true;
 	}
 	else {

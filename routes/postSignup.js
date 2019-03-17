@@ -9,14 +9,17 @@ var router = express.Router();
 // require dbms.js to access database
 var dbms = require('./dbms.js');
 
-router.post('/html/signup.html', function(req, res, next) {
+//router.post('/html/signup.html', function(req, res, next) {
+router.post('/', function(req, res, next) {
 	var email = req.body.email;
 	var user = req.body.user;
 	var pass = req.body.pass;
-
-	dbms.dbquery("INSERT INTO accounts (email, user, pass) VALUES ('$email', '$user', '$pass')",
+	console.log(email + " " + user);
+	dbms.dbquery("INSERT INTO accounts (email, user, pass) VALUES ('" + $email + "', '" + $user + "', '" + $pass + "');",
 	function(error, results) {
-		res.redirect('localhost:3000');
+		if(!error){
+			res.redirect('localhost:3000');
+		}
 	});
 });
 
