@@ -1,6 +1,6 @@
 // Sign Up Functions
+
 //Communicate with the server and database to send this info
-//
 function submit(){
 	console.log("signup received.");
 	var emailin = $('#signupEmail').val();
@@ -26,7 +26,7 @@ function submit(){
 		alert("Valid account! Submitting.");
 		$.post("/postSignup", {email: emailin, user: userin, pass: passin},
 		function(result){
-		
+			
 		});
 	}
 }
