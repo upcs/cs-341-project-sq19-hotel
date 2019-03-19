@@ -21,6 +21,7 @@
     <script src = "/javascripts/signup.js"></script>
 		<script />
 			$(document).ready(function(){
+				$('#signupComplete').hide();
 				$('#submit').click(function(event){
 					event.preventDefault();
 					submit();
@@ -70,15 +71,15 @@
 
         <div class="row">
             <div class="col">
-                <h2>Sign Up</h2>
-                <p>Please fill in this form to create an account.</p>
+                <h2 class="signup">Sign Up</h2>
+                <p class="signup">Please fill in this form to create an account.</p>
             </div>
         </div>
-
+				<h2 id="signupComplete">Thank you for signing up for UPAF! Your account has been recorded.</h2>
         <!-- Borrowed from https://getbootstrap.com/docs/4.0/components/forms/ -->
         <div class="row">
             <div class="col">
-                <form>
+                <form class="signup">
                     <div class="form-group">
                         <label for="signupEmail">Email Address</label>
                         <input type="email" class="form-control" id="signupEmail" placeholder="Enter email">

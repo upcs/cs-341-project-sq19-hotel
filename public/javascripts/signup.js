@@ -23,10 +23,17 @@ function submit(){
 		validPass = false;
 	}
 	if(validEmail && validUser && validPass){
-		alert("Valid account! Submitting.");
+		console.log("Valid account.");
 		$.post("/postSignup", {email: emailin, user: userin, pass: passin},
 		function(result){
-			
+			if(result){
+				console.log("Signup complete");
+				$('.signup').hide();
+				$('#signupComplete').show();
+			}
+			else{
+				alert("There is already an account with that email or username");
+			}
 		});
 	}
 }

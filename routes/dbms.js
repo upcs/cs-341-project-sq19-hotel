@@ -30,7 +30,6 @@ var dbclient;
  *                   results - as given by the mysql client
  */
 exports.dbquery = function(query_str, callback) {
-
     var results = null;
     
     async.waterfall([

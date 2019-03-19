@@ -22,9 +22,10 @@ $(document).ready(function () {
 			alert("One of the text areas is empty.");
 		}
 		else {
-			//alert("safe"); 
+			$.post("/postPost", {title: textTitle, body: textBody, id: "cs", user: "NuxollForPrez2020"},
+			function(result){
+			});
 			$("#postForm").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
-			//alert("Form removed"); 
 		}
 
 	});
