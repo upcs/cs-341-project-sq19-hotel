@@ -17,6 +17,15 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
+	
+	<!-- Link the functions -->
+	<script src = "/javascripts/login.js"/></script>
+	
+	<!-- After JS, and yes this syntax is correct-->
+	<script  />
+		$(document).ready(submissionClassSetUpMain);
+	</script>
+
 </head>
 
 <body>
@@ -68,7 +77,7 @@
         <!-- Borrowed from https://getbootstrap.com/docs/4.0/components/forms/ -->
         <div class="row">
             <div class="col">
-                <form>
+                <form id="loginForm">
                     <div class="form-group">
                         <label for="loginEmail">Email Address</label>
                         <input type="email" class="form-control" id="loginEmail" placeholder="Enter email">
@@ -81,7 +90,7 @@
                         <input type="checkbox" class="form-check-input" id="stayLoggedIn">
                         <label class="form-check-label" for="stayLoggedIn">Stay logged in</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Log In</button>
+                    <button type="submit" class="btn btn-primary" id="submitLogin">Log In</button>
                 </form>
             </div>
         </div>
