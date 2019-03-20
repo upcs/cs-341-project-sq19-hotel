@@ -3,30 +3,67 @@
 /* CS 341 | Nuxoll */
 /*----------------------------------------------------------------------------------*/
 
-//------------------------------------------------------------------------------
-// Added so when order button is clicked, the form changes to submitted. 
-// "#" is required before the id. "." for class.
-$(document).ready(function () {
-	$("#subbuttonPost").click(function() {
-		
-		// Make the  input consistent 
-		var textTitle = $("#title").val();
+//Function that is actually tested using jest and codecov
+function validateSubmissionPost(textPostTitle, textPostBody) {
+	if(textPostTitle == ""){
+		console.log('failed, null');
+		return false;
+	}
+	else if(textPostBody == "") {
+		console.log('failed, null');
+		return false;
+	}
+	
+	//Does it fit within the length specifications?
+	else if(textPostTitle.length > 200 || textPostTitle.length < 2) {
+		console.log(textPostTitle.length);
+		console.log('failed, too short');
+		return false;
+	}
+	//Does it fit within the length specifications?
+	else if(textPostBody.length < 2) {
+		console.log(textPostBody.length);
+		console.log('failed, too short');
+		return false;
+	}
+	else { //Passes everything
+		console.log('PASS');
+		return true;
+	}
+}
 
-		var textBody = $("#text").val();
+//Function that does all the hard work in conjuction with the html
+function submitClickPost() {
 		
-		console.log(textTitle);
-		console.log(textBody);
+	// Make the  input consistent 
+	var textPostTitle = $("#title").val();
+	var textPostBody = $("#text").val();
+	
+	console.log(textPostTitle);
+	console.log(textPostBody);
 		
-		// If statement to determine if vegan was detected, or to proceed.
-		if (textTitle == "" || textBody == "") {
-			alert("One of the text areas is empty.");
-		}
-		else {
-			$.post("/postPost", {title: textTitle, body: textBody, id: "cs", user: "NuxollForPrez2020"},
-			function(result){
-			});
-			$("#postForm").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
-		}
+	// If statement to determine if vegan was detected, or to proceed.
+	if (!validateSubmissionPost(textPostTitle, textPostBody)) {
+		alert("One of the text areas is invalid.");	
+	}
+	else {
+		//alert("safe");
+		$.post("/postPost", {title: textTitle, body: textBody, id: "cs", user: "NuxollForPrez2020"},
+		function(result){
+		});
+		$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
+		//alert("Form removed"); 
+	}
+}
 
-	});
-});
+//Main call that actually starts all the function running
+function submissionPostSetUpMain() {
+	$("#subbuttonPost").click(submitClickPost);
+}
+
+//Export to test
+//NOTE: THIS WILL THROW AN ERROR ON THE CONSOLE -- "Module is not defined" 
+//This is okay and should be ignored.
+module.exports = {
+	validateSubmissionPost:validateSubmissionPost
+}
