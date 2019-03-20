@@ -47,7 +47,10 @@ function submitClickPost() {
 		alert("One of the text areas is invalid.");	
 	}
 	else {
-		//alert("safe"); 
+		//alert("safe");
+		$.post("/postPost", {title: textTitle, body: textBody, id: "cs", user: "NuxollForPrez2020"},
+		function(result){
+		});
 		$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
 		//alert("Form removed"); 
 	}

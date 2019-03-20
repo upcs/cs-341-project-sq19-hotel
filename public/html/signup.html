@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<!-- Popper.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
@@ -18,7 +18,16 @@
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
     <!-- Use the js for signing up-->
-    <script type = "text/javascript" src = "/javascripts/signup.js"></script>
+    <script src = "/javascripts/signup.js"></script>
+		<script />
+			$(document).ready(function(){
+				$('#signupComplete').hide();
+				$('#submit').click(function(event){
+					event.preventDefault();
+					submit();
+				});
+			});
+		</script>
 </head>
 
 <body>
@@ -62,15 +71,15 @@
 
         <div class="row">
             <div class="col">
-                <h2>Sign Up</h2>
-                <p>Please fill in this form to create an account.</p>
+                <h2 class="signup">Sign Up</h2>
+                <p class="signup">Please fill in this form to create an account.</p>
             </div>
         </div>
-
+				<h2 id="signupComplete">Thank you for signing up for UPAF! Your account has been recorded.</h2>
         <!-- Borrowed from https://getbootstrap.com/docs/4.0/components/forms/ -->
         <div class="row">
             <div class="col">
-                <form>
+                <form class="signup">
                     <div class="form-group">
                         <label for="signupEmail">Email Address</label>
                         <input type="email" class="form-control" id="signupEmail" placeholder="Enter email">
@@ -88,8 +97,9 @@
                         <input type="password" class="form-control" id="signupRepeatPassword" placeholder="Repeat Password">
                     </div>
                     <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
-                </form>
+                    <button type="submit" class="btn btn-primary" id="submit">Sign Up</button>
+                
+								</form>
             </div>
         </div>
 
