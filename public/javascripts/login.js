@@ -8,7 +8,7 @@
 
 //Function that is actually tested using jest and codecov
 function validateSubmission(email, pass) {
-	if(email == "" || pass == "") {
+	if(email === "" || pass === "") {
 		console.log('failed, null');
 		return false;
 	}
@@ -27,27 +27,27 @@ function validateSubmission(email, pass) {
 
 //Function that does all the hard work in conjuction with the html
 function submitClick() {
-		
 	// Make the  input consistent 
-	var email = $("#loginEmail").text();
-	var pass = $("#loginPassword").text();
-	
-	//console.log(email);
-	//console.log(pass);
+	var email = $("#loginEmail").val();
+	var pass = $("#loginPassword").val();
 		
 	// If statement to determine if vegan was detected, or to proceed.
 	if (!validateSubmission(email, pass)) {
 		alert("Login information is invalid, try again.");	
 	}
 	else {
-		$("#col").replaceWith("<h3> <br> Login Successful! <br> </h3>" );
+		$.post("/postLogin", {email: email, pass: pass},
+		function(result){
+			if(result){
+				$("#loginRow").replaceWith("<h3> <br> Login Successful! <br> </h3>" );
+			}
+			else{
+				alert("Incorrect email or password");
+			}
+		});
 	}
 }
 
-//Main call that actually starts all the function running
-function submissionClassSetUpMain() {
-	$("#submitLogin").click(submitClick);
-}
 
 //Export to test
 //NOTE: THIS WILL THROW AN ERROR ON THE CONSOLE -- "Module is not defined" 

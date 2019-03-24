@@ -8,7 +8,7 @@ var indexRouter = require('./routes/index');
 var newAccountRouter = require('./routes/postSignup');
 var newPostRouter = require('./routes/postPost');
 var newClassRouter = require('./routes/postNewClass');
-
+var loginRouter = require('./routes/postLogin');
 
 var app = express();
 
@@ -26,6 +26,7 @@ app.use('/postSignup', newAccountRouter);
 app.use('/', indexRouter);
 app.use('/postPost', newPostRouter);
 app.use('/postNewClass', newClassRouter);
+app.use('/postLogin', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
