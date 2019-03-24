@@ -37,6 +37,7 @@ function validateSubmission(textCourseAb, textCourseNum) {
 	else { //Passes everything
 		console.log('PASS');
 		return true;
+
 	}
 }
 
@@ -58,6 +59,18 @@ function submitClick() {
 		//alert("safe"); 
 		$("#newClassTitle").replaceWith("<h3> <br> Class has been submitted. <br> </h3>" );
 		//alert("Form removed"); 
+		
+		
+		$.post("/postNewClass", {department: textCourseAb, number: textCourseNum, name: ""},
+		function(result){
+			if(result){
+				console.log("New Class complete");
+				$('.newClassTitle').replaceWith("Course Added!");
+			}
+			else{
+				alert("There was a problem creating the class.");
+			}
+		});
 	}
 }
 
