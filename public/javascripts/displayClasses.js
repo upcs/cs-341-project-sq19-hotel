@@ -6,7 +6,8 @@ $(document).ready(function () {
 	$("#class-features").show();
 
 
-	//hard coded for now
+	//hard coded for now for CS
+	//Declare variable later for both post requests
 	$.post("/classesGet/", {department: 'CS'}, function(data) {
 		//alert(data);
 
@@ -26,7 +27,7 @@ $(document).ready(function () {
 			listinstance.setAttribute("type","radio");
 			listinstance.setAttribute("name","radio");
 			listinstance.setAttribute("id",id);
-			listinstance.setAttribute("value",(data[i].department + data[i].number).toString());
+			listinstance.setAttribute("value",(data[i].number).toString()); //only the number for post request later
 			
 			list.appendChild(listinstance);
 			
@@ -38,21 +39,14 @@ $(document).ready(function () {
 			var linebreak = document.createElement("br");
 			list.appendChild(linebreak);
 			
-			//var clickablestring = document.createTextNode(data[i].department + data[i].number).toString());
-			//clickablestring.textContent = (data[i].department + data[i].number).toString();
-			//clickablestring.setAttribute("href","http://www.w3.org/DOM/");
-			
-			//listinstance.appendChild(clickablestring);
-			
-			//list.appendChild(listinstance);
 		}
 	});
 	
 	$("#class-placeholder").click(function(){
 		console.log("clicky");
 		
-		var checkedClass = $('input[name=radio]:checked').val(); 
-		console.log(checkedClass);
+		var checkedClassNum = $('input[name=radio]:checked').val(); 
+		console.log(checkedClassNum);
 		
 		$("#submitClass").click(function() {
 			alert("submit");
@@ -66,9 +60,17 @@ $(document).ready(function () {
 
 
 			//Put another post request here
-			
-			//Replace with the post stuff
+			$.post("/classPostsGet/", {department: 'CS', number: checkedClass}, function(data) {
+				//alert(data);
+				
+				//Replace with the post stuff
 			$("#post-placeholder").replaceWith("insert");
+			
+			
+			});
+			
+			
+			
 
 			
 		});
