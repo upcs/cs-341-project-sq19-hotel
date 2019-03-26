@@ -9,10 +9,13 @@ var dbms = require('./dbms.js');
 router.post('/', function(req, res, next) {
 	
 	console.log("SELECT * FROM classes WHERE department = '"+req.body.department+"'; ");
+	
+	//Select classes from the corresponding department that is sent in
 	dbms.dbquery("SELECT * FROM classes WHERE department = '"+req.body.department+"'; ", function(err, results) {
         if(!err) {
 		    console.log(results);
 
+			//Create empty arrays for the department and number
 			var classesDep = [];
 			var classesNum = [];
 			
