@@ -1,13 +1,17 @@
 //Post to display classes
 
 $(document).ready(function () {
+	
+	$("#post-features").hide();
+	$("#class-features").show();
+
 
 	//hard coded for now
 	$.post("/classesGet/", {department: 'CS'}, function(data) {
 		//alert(data);
 
 		//This is what will be replaced in the html
-		var list = document.getElementById("post-placeholder");
+		var list = document.getElementById("class-placeholder");
 
 		//Run for loop to go through and create elements for each class
 		for(i = 0 ; i < data.length; i++)
@@ -44,7 +48,7 @@ $(document).ready(function () {
 		}
 	});
 	
-	$("#post-placeholder").click(function(){
+	$("#class-placeholder").click(function(){
 		console.log("clicky");
 		
 		var checkedClass = $('input[name=radio]:checked').val(); 
@@ -53,13 +57,20 @@ $(document).ready(function () {
 		$("#submitClass").click(function() {
 			alert("submit");
 			
-/* 			//Post to server that takes the order above and counts it in the server
-			$.post("/somewhere", {department: departmentIn, number: numberIn), function(data) {
-				console.log("Posted!");
-			});
-			 */
-			return true; //sends back true to the button click to redirect to html
+			//REPLACE ALL Class information with Post information
+			//Run Another script
+			alert("replacing");
+			$("#class-placeholder").replaceWith(checkedClass);
+			$("#class-features").hide();
+			$("#post-features").show();
 
+
+			//Put another post request here
+			
+			//Replace with the post stuff
+			$("#post-placeholder").replaceWith("insert");
+
+			
 		});
 	});
 	
