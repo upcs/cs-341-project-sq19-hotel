@@ -3,9 +3,11 @@
 /* CS 341 | Nuxoll */
 /*----------------------------------------------------------------------------------*/
 
+
+
 //Function that is actually tested using jest and codecov
-function validateSubmission(textCourseAb, textCourseNum) {
-	if(textCourseAb == "" || textCourseNum == "") {
+function validateSubmission(textCourseAb, textCourseNum, textCourseName) {
+	if(textCourseAb == "" || textCourseNum == "" || textCourseName == "") {
 		console.log('failed, null');
 		return false;
 	}
@@ -39,6 +41,8 @@ function validateSubmission(textCourseAb, textCourseNum) {
 		return true;
 
 	}
+	
+	//03/26/19 JOHNNY HUANG - Did not have a check for the course name!!
 }
 
 //Function that does all the hard work in conjuction with the html
@@ -47,12 +51,14 @@ function submitClick() {
 	// Make the  input consistent 
 	var textCourseAb = $("#courseAb").val();
 	var textCourseNum = $("#courseNum").val();
+	var textCourseName = $("#courseName").val();
 	
 	console.log(textCourseAb);
 	console.log(textCourseNum);
+	console.log(textCourseName);
 		
 	// If statement to determine if vegan was detected, or to proceed.
-	if (!validateSubmission(textCourseAb, textCourseNum)) {
+	if (!validateSubmission(textCourseAb, textCourseNum, textCourseName)) {
 		alert("One of the text areas is invalid.");	
 	}
 	else {
@@ -61,8 +67,7 @@ function submitClick() {
 		//alert("Form removed"); 
 		
 		
-		$.post("/postNewClass", {department: textCourseAb, number: textCourseNum, name: ""},
-		function(result){
+		$.post("/postNewClass", {department: textCourseAb, number: textCourseNum, name: textCourseName}, function(result){
 			if(result){
 				console.log("New Class complete");
 				$('.newClassTitle').replaceWith("Course Added!");
@@ -82,6 +87,3 @@ function submissionClassSetUpMain() {
 //Export to test
 //NOTE: THIS WILL THROW AN ERROR ON THE CONSOLE -- "Module is not defined" 
 //This is okay and should be ignored.
-module.exports = {
-	validateSubmission:validateSubmission
-}
