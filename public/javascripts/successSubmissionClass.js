@@ -87,3 +87,7 @@ function submissionClassSetUpMain() {
 //Export to test
 //NOTE: THIS WILL THROW AN ERROR ON THE CONSOLE -- "Module is not defined" 
 //This is okay and should be ignored.
+module.exports = {
+	validateSubmission:validateSubmission
+}
+
