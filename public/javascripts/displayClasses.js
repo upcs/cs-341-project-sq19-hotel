@@ -42,12 +42,15 @@ $(document).ready(function () {
 			
 		}
 	});
-	
+
+	var submitted = false;
+
 	$("#class-placeholder").click(function(){
 		console.log("clicky");
 		
 		var checkedClassNum = $('input[name=radio]:checked').val(); 
 		console.log(checkedClassNum);
+		
 		
 		$("#submitClass").click(function() {
 			//alert("submit");
@@ -57,22 +60,39 @@ $(document).ready(function () {
 			//alert("replacing");
 			$("#class-placeholder").replaceWith(checkedClassNum);
 			
-			var checkedClassNumInt = parseInt(checkedClassNum);
-			console.log(checkedClassNumInt);
+			//var checkedClassNumInt = parseInt(checkedClassNum);
+			//console.log(checkedClassNumInt);
 
 			$("#class-features").hide();
 			$("#chooseCourse").hide();
 
 			$("#post-features").show();
-
-
+			
+			var submitted = true;
+			console.log("Inside" + " " + submitted);
+			
+			//Call function to post
+			classPost(checkedClassNum);
+			
+		});
+		
+		//Depending on the number of times you click the options is how many times it prints the results???
+		
+		function classPost(classNum) {
+			
+			console.log("Here" + " " + classNum);
+			classNum = null;
+			
 			//Put another post request here
-			//$.post("/classPostsGet/", {id: 'CS', coursenum: '203'}, function(data) {
-				//alert(data);
+			//$.post("/classPostsGet/", {id: 'CS', coursenum: classNum}, function(data) {
+			$.post("/classPostsGet/", {id: 'CS'}, function(data) {
+
 				
 				//This is what will be replaced in the html
 				var list = document.getElementById("post-placeholder");
-/* 
+				
+				//console.log(data);
+
 				//Run for loop to go through and create elements for each class
 				for(i = 0 ; i < data.length; i++)
 				{
@@ -80,7 +100,7 @@ $(document).ready(function () {
 					var id = "my" + i.toString() + "Div";
 					//alert(data[i].number);
 					
-					alert("hey");
+					//alert("hey");
 					
 					var listinstance = document.createElement("input");
 					
@@ -101,12 +121,10 @@ $(document).ready(function () {
 					
 					return;
 
-				} */
-				
-
-			//});
-
-		});
+				}
+		
+			});
+		}
 	});
 	
 });
