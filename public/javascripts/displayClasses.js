@@ -4,6 +4,7 @@ $(document).ready(function () {
 	
 	$("#post-features").hide();
 	$("#class-features").show();
+	$("#chooseCourse").show();
 
 
 	//hard coded for now for CS
@@ -49,30 +50,62 @@ $(document).ready(function () {
 		console.log(checkedClassNum);
 		
 		$("#submitClass").click(function() {
-			alert("submit");
+			//alert("submit");
 			
 			//REPLACE ALL Class information with Post information
 			//Run Another script
-			alert("replacing");
-			$("#class-placeholder").replaceWith(checkedClass);
+			//alert("replacing");
+			$("#class-placeholder").replaceWith(checkedClassNum);
+			
+			var checkedClassNumInt = parseInt(checkedClassNum);
+			console.log(checkedClassNumInt);
+
 			$("#class-features").hide();
+			$("#chooseCourse").hide();
+
 			$("#post-features").show();
 
 
 			//Put another post request here
-			$.post("/classPostsGet/", {department: 'CS', number: checkedClass}, function(data) {
+			$.post("/classPostsGet/", {id: 'CS', coursenum: '203'}, function(data) {
 				//alert(data);
 				
-				//Replace with the post stuff
-			$("#post-placeholder").replaceWith("insert");
-			
-			
-			});
-			
-			
-			
+				//This is what will be replaced in the html
+				var list = document.getElementById("post-placeholder");
 
-			
+				//Run for loop to go through and create elements for each class
+				for(i = 0 ; i < data.length; i++)
+				{
+					//Create ID for the element
+					var id = "my" + i.toString() + "Div";
+					//alert(data[i].number);
+					
+					alert("hey");
+					
+					var listinstance = document.createElement("input");
+					
+					//Set attributes
+					listinstance.setAttribute("type","radio");
+					listinstance.setAttribute("name","radio");
+					listinstance.setAttribute("value",(data[i].id).toString()); //only the number for post request later
+					
+					list.appendChild(listinstance);
+					
+					var label = document.createElement("label");
+					label.setAttribute("for",id);
+					label.innerHTML = (data[i].title + " - " + data[i].body).toString();
+					list.appendChild(label);
+					
+					var linebreak = document.createElement("br");
+					list.appendChild(linebreak);
+					
+					return;
+
+				}
+				
+
+			});
+
 		});
 	});
 	

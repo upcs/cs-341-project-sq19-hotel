@@ -38,7 +38,7 @@ function submitClickPost() {
 	// Make the  input consistent 
 	var textPostTitle = $("#title").val();
 	var textPostBody = $("#text").val();
-	
+
 	console.log(textPostTitle);
 	console.log(textPostBody);
 		
@@ -48,7 +48,7 @@ function submitClickPost() {
 	}
 	else {
 		//alert("safe");
-		$.post("/postPost", {title: textTitle, body: textBody, id: "cs", user: "NuxollForPrez2020"},
+		$.post("/postPost", {title: textPostTitle, body: textPostBody, id: "CS", user: "NuxollForPrez2020"},
 		function(result){
 		});
 		$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
