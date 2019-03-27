@@ -14,12 +14,12 @@ router.post('/', function(req, res, next) {
 	var user = req.body.user;
 	var rawPass = req.body.pass;
 	console.log(email + " " + user);
-	/*dbms.dbquery("SELECT * FROM accounts WHERE email = '" + email + "' OR user = '" + user + "';",
+	dbms.dbquery("SELECT * FROM accounts WHERE email = '" + email + "' OR user = '" + user + "';",
 	function(error, results) {
 		console.log(results[0]);
-		if(results[0] == undefined){//User not found, so we can insert into database!*/
+		if(results[0] == undefined){//User not found, so we can insert into database!
 			console.log("Inserting user!");
-			var pass = sha256(rawPass);
+			pass = sha256(rawPass);
 			dbms.dbquery("INSERT INTO accounts (email, user, pass) VALUES ('" + email + "', '" + user + "', '" + pass + "');",
 			function(error, results) {
 				if(error){
@@ -28,13 +28,16 @@ router.post('/', function(req, res, next) {
 				}
 				return res.send(true);//user submitted!
 			});
-		/*}
+		}
 		else{
 			console.log("User already exists");
-			return res.send(false);//user was found, so we shouldn't submit
+			return res.send(false);
 		}
-	});*/
+	});
 });
+
+function insert(email, user, rawPass){
+	}
 
 function sha256(message) {
 	hash = crypto.createHash('sha256');

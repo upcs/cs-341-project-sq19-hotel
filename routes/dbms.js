@@ -16,7 +16,6 @@ var host = "35.236.96.52";  //from GCloud instance (this may change)
 var database = "UPAF";
 var user = "student";
 var password = "intoPDX411";
-var dbclient;
 
 /**
  * dbquery
@@ -31,7 +30,7 @@ var dbclient;
  */
 exports.dbquery = function(query_str, callback) {
     var results = null;
-    
+    var dbclient;//redefine dbclient each time to allow for multiple calls.
     async.waterfall([
 
         //Step 1: Connect to the database
@@ -75,7 +74,6 @@ exports.dbquery = function(query_str, callback) {
 
         //close connection to database
         dbclient.end();
-
     });
 
 }//function dbquery
