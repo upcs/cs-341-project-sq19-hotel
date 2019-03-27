@@ -67,12 +67,12 @@ $(document).ready(function () {
 
 
 			//Put another post request here
-			$.post("/classPostsGet/", {id: 'CS', coursenum: '203'}, function(data) {
+			//$.post("/classPostsGet/", {id: 'CS', coursenum: '203'}, function(data) {
 				//alert(data);
 				
 				//This is what will be replaced in the html
 				var list = document.getElementById("post-placeholder");
-
+/* 
 				//Run for loop to go through and create elements for each class
 				for(i = 0 ; i < data.length; i++)
 				{
@@ -101,10 +101,10 @@ $(document).ready(function () {
 					
 					return;
 
-				}
+				} */
 				
 
-			});
+			//});
 
 		});
 	});
