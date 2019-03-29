@@ -48,7 +48,8 @@ function submitClickPost() {
 	}
 	else {
 		//alert("safe");
-		$.post("/postPost", {title: textPostTitle, body: textPostBody, id: "CS", user: "NuxollForPrez2020"},
+		//CHANGE COURSENUM HERE AND IN displayClasses.js
+		$.post("/postPost", {title: textPostTitle, body: textPostBody, id: "CS", user: "NuxollForPrez2020", coursenum: "203"},
 		function(result){
 		});
 		$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
