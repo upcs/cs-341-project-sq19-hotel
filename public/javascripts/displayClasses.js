@@ -80,7 +80,7 @@ $(document).ready(function () {
 		console.log("Here" + " " + classNum);
 		
 		//FOR NOW hard coded until you can get the class id and number sent
-		classNum = 203;
+		//classNum = 203;
 		
 		//Put another post request here
 		//$.post("/classPostsGet/", {id: 'CS', coursenum: classNum}, function(data) {
