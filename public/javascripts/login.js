@@ -9,7 +9,6 @@
 //Function that is actually tested using jest and codecov
 function validateSubmission(email, pass) {
 	if(email === "" || pass === "") {
-		console.log('failed, null');
 		return false;
 	}
 	
@@ -20,8 +19,20 @@ function validateSubmission(email, pass) {
 		return false;
 	} */
 	else { //Passes everything
-		console.log('PASS');
 		return true;
+	}
+}
+
+function checkToken(){
+	var token = document.cookie;
+	
+	if (token != null && token != ""){
+		$.post("/checkToken", {token: token},
+		function(result){
+			if(result[0]){
+				$("#loginRow").replaceWith("<h3><br>Already Logged In!<br></h3>");
+			}
+		});
 	}
 }
 
@@ -38,8 +49,9 @@ function submitClick() {
 	else {
 		$.post("/postLogin", {email: email, pass: pass},
 		function(result){
-			if(result){
+			if(result[0] == true){
 				$("#loginRow").replaceWith("<h3> <br> Login Successful! <br> </h3>" );
+				document.cookie = result[1];
 			}
 			else{
 				alert("Incorrect email or password");
