@@ -28,14 +28,7 @@
 	
 	<!-- After JS, and yes this syntax is correct-->
 	<script  />
-		$(document).ready(function(){
-			checkToken();
-			$('#submitLogin').click(function(event){
-				event.preventDefault();
-				submitClick();
-			});
-		});
-
+		document.cookie = "";
 	</script>
 
 </head>
@@ -45,36 +38,9 @@
 
      	<!--Navigation bar INSERT-->
 		<div id="nav-placeholder"> </div>
+		
+		<h3>You have been logged out.<h3>
 
-
-        <div class="row">
-            <div class="col">
-                <h2>Log In</h2>
-            </div>
-        </div>
-
-        <!-- Borrowed from https://getbootstrap.com/docs/4.0/components/forms/ -->
-        <div class="row">
-            <div class="col" id="loginRow">
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="loginEmail">Email Address</label>
-                        <input type="email" class="form-control" id="loginEmail" placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                        <label for="loginPassword">Password</label>
-                        <input type="password" class="form-control" id="loginPassword" placeholder="Password">
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="stayLoggedIn">
-                        <label class="form-check-label" for="stayLoggedIn">Stay logged in</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="submitLogin">Log In</button>
-                </form>
-            </div>
-        </div>
-
-    </div>
 </body>
 
 </html>
