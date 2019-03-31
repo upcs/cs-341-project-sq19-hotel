@@ -59,7 +59,7 @@ $(document).ready(function () {
 		//REPLACE ALL Class information with Post information
 		//Run Another script
 		//alert("replacing");
-		$("#class-placeholder").replaceWith(checkedClassNum);
+		$("#class-placeholder").replaceWith(checkedClassNum.toString());
 		
 		$("#class-features").hide();
 		$("#chooseCourse").hide();
@@ -121,11 +121,6 @@ $(document).ready(function () {
 	
 		});
 	}
-	
-	$("#newPost").click(function() {
-			//alert("new post clicked");
-			
-		});
 	
 });
 
