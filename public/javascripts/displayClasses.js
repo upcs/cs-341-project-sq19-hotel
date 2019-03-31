@@ -46,14 +46,13 @@ $(document).ready(function () {
 
 	var submitted = false;
 
-	console.log("clicky");
-	
-	var checkedClassNum = $('input[name=radio]:checked').val(); 
-	console.log(checkedClassNum);
-	
-		
 	$("#submitClass").click(function() {
 		//alert("submit");
+
+		console.log("clicky");
+		
+		var checkedClassNum = $('input[name=radio]:checked').val(); 
+		console.log(checkedClassNum);
 		
 		//REPLACE ALL Class information with Post information
 		//Run Another script
@@ -68,6 +67,7 @@ $(document).ready(function () {
 		var submitted = true;
 		console.log("Inside" + " " + submitted);
 		
+		alert(checkedClassNum);
 		//Call function to post
 		classPost(checkedClassNum);
 		
