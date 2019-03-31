@@ -1,4 +1,5 @@
 // Test files for login.js
+// Kaitlin Larson
 
 var login = require('./login.js');
 var $ = require('jquery');
