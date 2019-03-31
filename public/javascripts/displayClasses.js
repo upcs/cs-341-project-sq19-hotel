@@ -18,7 +18,7 @@ $(document).ready(function () {
 		//Run for loop to go through and create elements for each class
 		for(i = 0 ; i < data.length; i++)
 		{
-			console.log(data.length);
+			console.log("Data length:" + data.length);
 			//Create ID for the element
 			var id = "my" + i.toString() + "Div";
 			//alert(data[i].number);
@@ -29,7 +29,7 @@ $(document).ready(function () {
 			listinstance.setAttribute("type","radio");
 			listinstance.setAttribute("name","radio");
 			listinstance.setAttribute("id",id);
-			listinstance.setAttribute("value",(data[i].number).toString()); //only the number for post request later
+			listinstance.setAttribute("value",(data[i].department).toString() + " " + (data[i].number).toString()); //only the number for post request later
 			
 			list.appendChild(listinstance);
 			
@@ -49,9 +49,12 @@ $(document).ready(function () {
 	$("#submitClass").click(function() {
 		//alert("submit");
 
-		console.log("clicky");
+		console.log("Button Clicked");
 		
 		var checkedClassNum = $('input[name=radio]:checked').val(); 
+		var getDep = checkedClassNum.substring(0,checkedClassNum.indexOf(" "));
+		var getNum = checkedClassNum.substring(checkedClassNum.indexOf(" "),checkedClassNum.length);
+		
 		console.log(checkedClassNum);
 		
 		//REPLACE ALL Class information with Post information
@@ -64,27 +67,22 @@ $(document).ready(function () {
 
 		$("#post-features").show();
 		
-		var submitted = true;
-		console.log("Inside" + " " + submitted);
+		//alert(checkedClassNum);
 		
-		alert(checkedClassNum);
 		//Call function to post
-		classPost(checkedClassNum);
+		classPost(getDep, getNum);
 		
 	});
 	
 	//Depending on the number of times you click the options is how many times it prints the results???
 	
-	function classPost(classNum) {
+	function classPost(classDep, classNum) {
 		
 		console.log("Here" + " " + classNum);
 		
-		//FOR NOW hard coded until you can get the class id and number sent
-		//classNum = 203;
-		
 		//Put another post request here
 		//$.post("/classPostsGet/", {id: 'CS', coursenum: classNum}, function(data) {
-		$.post("/classPostsGet/", {id: 'CS', coursenum: classNum}, function(data) {
+		$.post("/classPostsGet/", {id: classDep, coursenum: classNum}, function(data) {
 
 			
 			//This is what will be replaced in the html

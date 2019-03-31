@@ -26,7 +26,7 @@ router.post('/', function(req, res, next) {
 			var postBody = [];
 			
 			for (i = 0; i < results.length; i++) {
-				if (results[i].id == "CS" && results[i].coursenum == "coursenumIn") {
+				if (results[i].id == idIn && results[i].coursenum == coursenumIn) {
 				//if (results[i].id == "CS") {
 
 					postTitle[i] = results[i].title;
