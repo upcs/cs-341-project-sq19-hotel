@@ -25,6 +25,12 @@
 	
 	<!-- Use JS-->
 	<script src = "../javascripts/displayClasses.js"/></script>
+	
+	<script src = "../javascripts/successSubmissionClass.js"/></script>
+	
+	<script />
+		$(document).ready(submissionClassSetUpMain);
+	</script>
 
 
 	
@@ -50,10 +56,54 @@
 		<div id="class-features">
 			<!-- Submit Button -->
 			<button id ="submitClass" type = "button">Go to Class Posts </button>
-			<br>
+			<br><br>
+							
+			<!-- Button trigger modal -->
+			<button type="button" data-toggle="modal" data-target="#exampleModalLong">
+			  Create a New Class
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">New Class</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+									
+					<div id="newClassTitle">
+						<label for="newClassAb">Course Abbreviation: </label>
+						<br>
+						<input type="text" id="courseAb" name="courseAb" placeholder="(i.e. CS, EGR, etc.)">
+						<br><br>
+						
+						<label for="newClassNum">Course ID #: </label>
+						<br>
+						<input type="text" id="courseNum" name="courseNum" placeholder="(i.e. 341, 301, etc.)">
+						<br><br>
 					
-			<!-- Add a new Class here-->
-			<a href="newclass.html">CLICK HERE TO ADD A NEW CLASS </a>    
+						<label for="newClassName">Course Name: </label>
+						<br>
+						<input type="text" id="courseName" name="courseName" placeholder="(i.e. Intro to Computer Science)">
+						<br><br>
+						
+					</div>
+					
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button id = "subbuttonClass" type="button" class="btn btn-primary">Submit</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		
+		
+		
 		</div>
 		
 		<!--Post features-->

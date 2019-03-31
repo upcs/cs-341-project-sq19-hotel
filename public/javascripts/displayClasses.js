@@ -44,12 +44,11 @@ $(document).ready(function () {
 		}
 	});
 
-	var submitted = false;
-
+	//What happens when the button is clicked
 	$("#submitClass").click(function() {
 		//alert("submit");
 
-		console.log("clicky");
+		console.log("Button Clicked");
 		
 		var checkedClassNum = $('input[name=radio]:checked').val(); 
 		console.log(checkedClassNum);
@@ -63,24 +62,19 @@ $(document).ready(function () {
 		$("#chooseCourse").hide();
 
 		$("#post-features").show();
-		
-		var submitted = true;
-		console.log("Inside" + " " + submitted);
-		
+				
 		alert(checkedClassNum);
 		//Call function to post
 		classPost(checkedClassNum);
 		
+
 	});
 	
 	//Depending on the number of times you click the options is how many times it prints the results???
 	
 	function classPost(classNum) {
 		
-		console.log("Here" + " " + classNum);
-		
-		//FOR NOW hard coded until you can get the class id and number sent
-		//classNum = 203;
+		//console.log("Here" + " " + classNum);
 		
 		//Put another post request here
 		//$.post("/classPostsGet/", {id: 'CS', coursenum: classNum}, function(data) {
