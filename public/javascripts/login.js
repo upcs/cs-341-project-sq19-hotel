@@ -25,7 +25,6 @@ function validateSubmission(email, pass) {
 
 function checkToken(){
 	var token = document.cookie;
-	
 	if (token != null && token != ""){
 		$.post("/checkToken", {token: token},
 		function(result){
