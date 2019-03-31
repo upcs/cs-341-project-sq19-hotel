@@ -44,8 +44,7 @@ $(document).ready(function () {
 		}
 	});
 
-	var submitted = false;
-
+	//What happens when the button is clicked
 	$("#submitClass").click(function() {
 		//alert("submit");
 
@@ -66,19 +65,20 @@ $(document).ready(function () {
 		$("#chooseCourse").hide();
 
 		$("#post-features").show();
-		
+
 		//alert(checkedClassNum);
-		
+
 		//Call function to post
 		classPost(getDep, getNum);
 		
+
 	});
 	
 	//Depending on the number of times you click the options is how many times it prints the results???
 	
 	function classPost(classDep, classNum) {
-		
-		console.log("Here" + " " + classNum);
+
+		//console.log("Here" + " " + classNum);
 		
 		//Put another post request here
 		//$.post("/classPostsGet/", {id: 'CS', coursenum: classNum}, function(data) {

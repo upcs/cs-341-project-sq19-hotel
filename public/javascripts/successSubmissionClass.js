@@ -11,7 +11,6 @@ function validateSubmission(textCourseAb, textCourseNum, textCourseName) {
 		console.log('failed, null');
 		return false;
 	}
-	
 	//COURSE ABBREVIATION String
 	//Does it fit within the length specifications?
 	else if(textCourseAb.length > 4 || textCourseAb.length < 2) {
