@@ -59,7 +59,7 @@ function submitClickPost() {
 
 //Main call that actually starts all the function running
 function submissionPostSetUpMain() {
-	$("#subbuttonPost").click(submitClickPost);
+	$("#addPostButton").click(submitClickPost);
 }
 
 //Export to test
