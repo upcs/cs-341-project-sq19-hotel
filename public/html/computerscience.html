@@ -23,7 +23,12 @@
 	<!-- For the Nav Menu -->
 	<script src="//code.jquery.com/jquery.min.js"></script>
 	<script src = "../javascripts/nav.js"/></script>
+	
+	<!-- Use JS-->
+	<script src = "../javascripts/displayClasses.js"/></script>
 
+
+	
 </head>
 
 <body>
@@ -33,23 +38,33 @@
 		<div id="nav-placeholder"> </div>
 
         <div class="row">
-            <div class="col">
+            <div class="col" id="chooseCourse">
                 <p>Choose the course:</p>
             </div>
         </div>
+		
+		<!-- Classes from the Database are put there -->
+		<div id="class-placeholder"></div>
+		<div id="post-placeholder"></div>
 
-        <div class="row">
-            <div class="col">
-                <ul>
-                    <li>CS203 - Introduction to Java</li>
-                    <li>CS301 - Object-Oriented Programming</li>
-                    <li>CS305 - Data Structures</li>
-                    <li><a href="cs999.html">CS999 - Intro to Potato Computing</a></li>
-                    <li><a href="newclass.html">CLICK HERE TO ADD A NEW CLASS </a></li>
-                </ul>
-            </div>
-        </div>
-    
+		<!--Post features-->
+		<div id="class-features">
+			<!-- Submit Button -->
+			<button id ="submitClass" type = "button">Go to Class Posts </button>
+			<br>
+					
+			<!-- Add a new Class here-->
+			<a href="newclass.html">CLICK HERE TO ADD A NEW CLASS </a>    
+		</div>
+		
+		<!--Post features-->
+		<div id="post-features">
+					
+			<!-- Add a new Class here-->
+			<a href="newpost.html">CLICK HERE TO ADD A POST </a>    
+		</div>
+		
+		
     </div>
 </body>
 
