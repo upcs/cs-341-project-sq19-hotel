@@ -15,8 +15,10 @@ router.post('/', function(req, res, next) {
 	var body = req.body.body;
 	var user = req.body.user;
 	var id = req.body.id;
-	console.log(title + body);
-	dbms.dbquery("INSERT INTO posts (title, body, user, id) VALUES ('" + title + "', '" + body + "', '" + user + "', '" + id + "');",
+	var coursenum = req.body.coursenum;
+	
+	console.log(title + body + id + coursenum);
+	dbms.dbquery("INSERT INTO posts (title, body, user, id, coursenum) VALUES ('" + title + "', '" + body + "', '" + user + "', '" + id + "', '" + coursenum + "');",
 	function(error, results) {
 	});
 });
