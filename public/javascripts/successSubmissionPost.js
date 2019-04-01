@@ -38,12 +38,14 @@ function submitClickPost() {
 	// Make the  input consistent 
 	var textPostTitle = $("#title").val();
 	var textPostBody = $("#text").val();
-	var courseInfo = $("#class-placeholder").text();
 	
-	alert(courseInfo);
+	var parent = $("#class-placeholder").text();
+	
+	alert(parent);
+	console.log(parent);
 
-	var courseID = courseInfo.substring(0,courseInfo.indexOf(" "));
-	var courseNum = courseInfo.substring(courseInfo.indexOf(" "),courseInfo.length);
+	//var courseID = courseInfo.substring(0,courseInfo.indexOf(" "));
+	//var courseNum = courseInfo.substring(courseInfo.indexOf(" "),courseInfo.length);
 	
 	//console.log(textPostTitle);
 	//console.log(textPostBody);
@@ -53,11 +55,11 @@ function submitClickPost() {
 		alert("One of the text areas is invalid.");	
 	}
 	else {
-		//alert("safe");
-		//CHANGE COURSENUM HERE AND IN displayClasses.js
-		$.post("/postPost", {title: textPostTitle, body: textPostBody, id: courseID , user: "NuxollForPrez2020", coursenum: courseNum},
-		function(result){
-		});
+		var id = ~~((Math.random() * 100000000) + 1000);
+
+		$.post("/postPost", {title: textPostTitle, body: textPostBody, parent: parent, user: "NuxollForPrez2020", id: id}, function(result){ });
+		
+		
 		$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
 		//alert("Form removed"); 
 	}
