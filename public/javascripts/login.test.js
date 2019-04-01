@@ -23,12 +23,11 @@ test('Filled email and password fields, accepted', () => {
 	expect(login.validateSubmission("doberman20@up.edu", "yeehaw")).toBe(true);
 });
 
+/*
 // WIP
 // Test submitClick function
 //      Should send nonempty email and password to server
 //      Should inform people if login is successful
-
-/*
 
 // Set up document body
     document.body.innerHTML =
@@ -61,4 +60,5 @@ test('Incorrect login information, alerts user', ()=> {
 
 test('Correct login information, alerts user', ()=> {
     
-}); */
+});
+*/
