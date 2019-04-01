@@ -24,6 +24,20 @@
 	<!-- For the Nav Menu -->
 	<script src="//code.jquery.com/jquery.min.js"></script>
 	<script src = "/javascripts/nav.js"/></script>
+	<script>
+	 	$(document).ready(function(){
+			var token = document.cookie;
+			if(token != null && token != ""){
+				$.post("/checkToken", {token: token},
+				function(result){
+					if(result[0]){
+						$("#signUp").remove();
+						$("#log").replaceWith('<a class="nav-link" id="loggedIn" href="/html/logout.html">' + result[1].user + '</a>');
+					}
+				});
+			}
+		});
+	</script>
 </head>
 
 <body>
@@ -33,29 +47,26 @@
 	<!-- Hard coded because the paths are different than the other pages-->
 	<div class="row">
             <div class="col">
-                <nav class="navbar navbar-expand navbar-light bg-light">
-                    <div class="collapse navbar-collapse">
+                <nav class="navbar navbar-expand navbar-static-top navbar-light bg-light">
+                    <div class="navbar collapse navbar-collapse">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="../index.html">Home</a>
+                            <li class="nav-item" >
+                                <a class="nav-link" href="./index.html">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/html/placeholder.html">News</a>
+                                <a class="nav-link" href="html/placeholder.html">News</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/html/placeholder.html">Contact</a>
+                                <a class="nav-link" href="html/placeholder.html">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/html/placeholder.html">About</a>
+                                <a class="nav-link" href="html/placeholder.html">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/html/login.html">Log In</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/html/signup.html">Sign Up</a>
+                                <a class="nav-link" id="signUp" href="html/signup.html">Sign Up</a>
                             </li>
 														<li class="nav-item">
-																<a class="nav-link" href="/html/logout.html">Log Out</a>
+																<a class="nav-link" id="log" href="html/login.html">Log In</a>
 														</li>
                         </ul>
                     </div>

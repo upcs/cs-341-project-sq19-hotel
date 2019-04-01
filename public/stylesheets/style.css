@@ -47,3 +47,7 @@ body {
 	height: 100%;
 	text-align: bottom;
 }
+
+#loggedIn {
+	color: blue;
+}
