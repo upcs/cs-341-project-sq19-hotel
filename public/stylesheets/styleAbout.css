@@ -1,0 +1,35 @@
+/*---------------------------------------------------------------------------------- */
+/* Created by Team Hotel */
+/* CS 341 | Nuxoll */
+/*----------------------------------------------------------------------------------*/
+
+/* style.css for index.html */
+
+#splash h1 {
+	text-align: center;
+	position: relative;	
+	background: #25205E;
+	background-size: cover;
+	color: white;
+	padding-top: 5%;
+	padding-bottom: 5%;
+}
+
+#titleAbout {
+	font-size: 40pt;
+}
+
+p {
+	padding: 2% 20% 0%;
+	text-align: center;
+
+}
+.navbar {
+	width: 100%;
+	height: 100%;
+	text-align: bottom;
+}
+
+#loggedIn {
+	color: blue;
+}
