@@ -14,11 +14,13 @@ router.post('/', function(req, res, next) {
 	var title = req.body.title;
 	var body = req.body.body;
 	var user = req.body.user;
+	var parent = req.body.parent;
 	var id = req.body.id;
-	var coursenum = req.body.coursenum;
+;
 	
-	console.log(title + body + id + coursenum);
-	dbms.dbquery("INSERT INTO posts (title, body, user, id, coursenum) VALUES ('" + title + "', '" + body + "', '" + user + "', '" + id + "', '" + coursenum + "');",
+	console.log("INSERT INTO posts (title, body, user, parent, id) VALUES ('" + title + "', '" + body + "', '" + user + "', '" + parent + "', '" + id + "'");
+	
+	dbms.dbquery("INSERT INTO posts (title, body, user, parent, id) VALUES ('" + title + "', '" + body + "', '" + user + "', '" + parent + "', '" + id + "');",
 	function(error, results) {
 	});
 });
