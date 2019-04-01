@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    
+	<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+ 
 	<!-- Popper.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <!-- Bootstrap -->
@@ -21,14 +21,21 @@
     <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
 	
 	<!-- For the Nav Menu -->
-	<script src="//code.jquery.com/jquery.min.js"></script>
 	<script src = "../javascripts/nav.js"/></script>
 	
 	<!-- Use JS-->
 	<script src = "../javascripts/displayClasses.js"/></script>
-
+	
+	<!-- For adding new post -->
+	<script src = "/javascripts/successSubmissionPost.js"/></script>
+	<script src = "../javascripts/successSubmissionClass.js"/></script>
 
 	
+	<script/>
+		$(document).ready(submissionPostSetUpMain);
+		$(document).ready(submissionClassSetUpMain);
+	</script>
+
 </head>
 
 <body>
@@ -51,17 +58,90 @@
 		<div id="class-features">
 			<!-- Submit Button -->
 			<button id ="submitClass" type = "button">Go to Class Posts </button>
-			<br>
+			<br><br>
+							
+			<!-- Button trigger modal -->
+			<button type="button" data-toggle="modal" data-target="#exampleModalLong">
+			  Create a New Class
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">New Class</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+									
+					<div id="newClassTitle">
+						<label for="newClassAb">Course Abbreviation: </label>
+						<br>
+						<input type="text" id="courseAb" name="courseAb" placeholder="(i.e. CS, EGR, etc.)">
+						<br><br>
+						
+						<label for="newClassNum">Course ID #: </label>
+						<br>
+						<input type="text" id="courseNum" name="courseNum" placeholder="(i.e. 341, 301, etc.)">
+						<br><br>
 					
-			<!-- Add a new Class here-->
-			<a href="newclass.html">CLICK HERE TO ADD A NEW CLASS </a>    
+						<label for="newClassName">Course Name: </label>
+						<br>
+						<input type="text" id="courseName" name="courseName" placeholder="(i.e. Intro to Computer Science)">
+						<br><br>
+						
+					</div>
+					
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button id = "subbuttonClass" type="button" class="btn btn-primary">Submit</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		
+		
+		
 		</div>
 		
 		<!--Post features-->
 		<div id="post-features">
 					
-			<!-- Add a new Class here-->
-			<a href="newpost.html">CLICK HERE TO ADD A POST </a>    
+			<!-- Add a new Class here--> 
+			<button type="button" data-toggle="modal" data-target="#exampleModal">Add a New Post</button>
+			
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">ADD NEW POST</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+					<div id = "newPost">
+			<div id="newPostTitle">
+				<label for="newtitle">TITLE: </label>
+				 <input type="text" id="title" name="title" placeholder="Enter title for new post...">
+			</div>
+
+			<div id = "newPostBody">
+					<textarea id="text" rows="4" cols="50" placeholder="Enter any educational post here..."></textarea><br>
+			</div>
+		</div>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" data-dismiss="modal">Close</button>
+					<button id="addPostButton" type="button">Save changes</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
 		</div>
 		
 		
