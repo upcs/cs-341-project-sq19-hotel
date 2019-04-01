@@ -69,20 +69,20 @@ $(document).ready(function () {
 		//alert(checkedClassNum);
 
 		//Call function to post
-		classPost(getDep, getNum);
+		classPost(checkedClassNum);
 		
 
 	});
 	
 	//Depending on the number of times you click the options is how many times it prints the results???
 	
-	function classPost(classDep, classNum) {
+	function classPost(checkedClassNum) {
 
 		//console.log("Here" + " " + classNum);
 		
 		//Put another post request here
 		//$.post("/classPostsGet/", {id: 'CS', coursenum: classNum}, function(data) {
-		$.post("/classPostsGet/", {id: classDep, coursenum: classNum}, function(data) {
+		$.post("/classPostsGet/", {parent: checkedClassNum}, function(data) {
 
 			
 			//This is what will be replaced in the html

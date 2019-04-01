@@ -8,14 +8,13 @@ var dbms = require('./dbms.js');
 
 router.post('/', function(req, res, next) {
 	
-	var idIn = req.body.id;
-	var coursenumIn = req.body.coursenum;
-	console.log(idIn, " ", coursenumIn);
+	var parentIn = req.body.parent;
+	console.log(parentIn);
 	
-	console.log("SELECT * FROM posts WHERE id = '"+req.body.id+"' AND coursenum =' "+req.body.coursenum+" ' ");
+	console.log("SELECT * FROM posts WHERE parent = '"+req.body.parent+"' ");
 	
 	//Select classes from the corresponding department that is sent in
-	dbms.dbquery("SELECT * FROM posts WHERE id = '"+req.body.id+"' AND coursenum =' "+req.body.coursenum+" ' ", function(err, results) {
+	dbms.dbquery("SELECT * FROM posts WHERE parent = '"+req.body.parent+"' ", function(err, results) {
 	//dbms.dbquery("SELECT * FROM posts WHERE id = '"+req.body.id+"' ", function(err, results) {
 
         if(!err) {
@@ -26,8 +25,7 @@ router.post('/', function(req, res, next) {
 			var postBody = [];
 			
 			for (i = 0; i < results.length; i++) {
-				if (results[i].id == idIn && results[i].coursenum == coursenumIn) {
-				//if (results[i].id == "CS") {
+				if (results[i].parent == parentIn) {
 
 					postTitle[i] = results[i].title;
 					postBody[i] = results[i].body;
