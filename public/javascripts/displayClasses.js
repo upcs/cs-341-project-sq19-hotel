@@ -59,7 +59,7 @@ $(document).ready(function () {
 		//REPLACE ALL Class information with Post information
 		//Run Another script
 		//alert("replacing");
-		$("#class-placeholder").replaceWith(checkedClassNum.toString());
+		$("#class-placeholder").html(checkedClassNum.toString());
 		
 		$("#class-features").hide();
 		$("#chooseCourse").hide();

@@ -39,7 +39,7 @@ function submitClickPost() {
 	var textPostTitle = $("#title").val();
 	var textPostBody = $("#text").val();
 	
-	var parent = $("#class-placeholder").val();
+	var parent = $("#class-placeholder").text();
 	
 	alert(parent);
 	console.log(parent);
