@@ -25,6 +25,7 @@ function validateSubmission(email, pass) {
 
 function checkToken(){
 	var token = document.cookie;
+	console.log("Token: " + token);
 	if (token != null && token != ""){
 		$.post("/checkToken", {token: token},
 		function(result){
@@ -50,7 +51,7 @@ function submitClick() {
 		function(result){
 			if(result[0] == true){
 				$("#loginRow").replaceWith("<h3> <br> Login Successful! <br> </h3>" );
-				document.cookie = result[1];
+				document.cookie = result[1] + "; path=/";
 			}
 			else{
 				alert("Incorrect email or password");
