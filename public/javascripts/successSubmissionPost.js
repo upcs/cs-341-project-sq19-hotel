@@ -55,13 +55,19 @@ function submitClickPost() {
 		alert("One of the text areas is invalid.");	
 	}
 	else {
-		var id = ~~((Math.random() * 100000000) + 1000);
-
-		$.post("/postPost", {title: textPostTitle, body: textPostBody, parent: parent, user: "NuxollForPrez2020", id: id}, function(result){ });
-		
-		
-		$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
-		//alert("Form removed"); 
+		var token = document.cookie;
+		var user = null;
+		$.post("/checkToken", {token: token}, function(result){
+			if(!result[0]){
+				$("#newPost").replaceWith("<h3> <br> Please sign up or log in first! <br> </h3>" );
+			}
+			else{
+				var id = ~~((Math.random() * 100000000) + 1000);
+				$.post("/postPost", {title: textPostTitle, body: textPostBody, parent: parent, user: result[1].user, id: id}, function(result){ });
+				$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
+			}
+		});
+				//alert("Form removed"); 
 	}
 }
 
