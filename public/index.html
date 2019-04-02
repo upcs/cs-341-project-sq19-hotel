@@ -19,17 +19,15 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
-	
-	<!-- For the Nav Menu -->
-	<script src = "../javascripts/nav.js"/></script>
-	
 	<!-- Use JS-->
-	<script src = "../javascripts/displayClasses.js"/></script>
+	<script src = "/javascripts/displayClasses.js"/></script>
 	
 	<!-- For adding new post -->
 	<script src = "/javascripts/successSubmissionPost.js"/></script>
-	<script src = "../javascripts/successSubmissionClass.js"/></script>
-
+	<script src = "/javascripts/successSubmissionClass.js"/></script>
+	
+	<!-- For the Nav Menu -->
+	<!--<script src = "/javascripts/nav.js"/></script>-->
 	<!-- Log In -->
 	<script>
 		$(document).ready(function(){
@@ -55,8 +53,45 @@
 </head>
 
 <body>
-	<!--Navigation bar INSERT-->
-	<div id="nav-placeholder"> </div>
+	<!-- Navigation Bar, must be hard coded bc the path is different than the others -->
+	<div class="container">
+
+        <div class="row">
+            <div class="col">
+                <nav class="navbar navbar-expand navbar-static-top navbar-light bg-light">
+                    <div class="navbar collapse navbar-collapse">
+                        <ul class="navbar-nav">
+                            <li class="nav-item" >
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/html/contact.html">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/html/about.html">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="signUp" href="/html/signup.html">Sign Up</a>
+                            </li>
+							<li class="nav-item">
+								<a class="nav-link" id="log" href="/html/login.html">Log In</a>
+							</li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+		
+		<!-- UPAF Banner -->
+		<div class="row">
+            <div class="col">
+                <div id="splash">
+                    <h1>University of Portland Academic Forum</h1>
+                </div>
+            </div>
+        </div>
+		
+	</div>
 
 	<div id="mainPage" class = "container" >
 
