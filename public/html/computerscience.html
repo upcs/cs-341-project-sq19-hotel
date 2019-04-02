@@ -30,7 +30,23 @@
 	<script src = "/javascripts/successSubmissionPost.js"/></script>
 	<script src = "../javascripts/successSubmissionClass.js"/></script>
 
+	<!-- Log In -->
+	<script>
+		$(document).ready(function(){
+			var token = document.cookie;
+			if(token != null && token != ""){
+				$.post("/checkToken", {token: token},
+				function(result){
+					if(result[0]){
+						$("#signUp").remove();
+						$("#log").replaceWith('<a class="nav-link" id="loggedIn" href="/html/logout.html">' + result[1].user + '</a>');
+					}
+				});
+			}
+		});
+	</script>
 	
+	<!-- Classes and Posts -->
 	<script/>
 		$(document).ready(submissionPostSetUpMain);
 		$(document).ready(submissionClassSetUpMain);
@@ -39,16 +55,78 @@
 </head>
 
 <body>
-    <div class="container">
+	<!--Navigation bar INSERT-->
+	<div id="nav-placeholder"> </div>
+
+	<div id="mainPage" class = "container" >
+		<div class="row">
+				<div class="col">
+					<p>Choose the subject you need help with:</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<ul>
+						<input type="radio" name="subject" value="bio" id="bio"> Biology<br>
+						<input type="radio" name="subject" value="bus" id="bus"> Business<br>
+						<input type="radio" name="subject" value="chm" id="chm"> Chemistry<br>
+						<input type="radio" name="subject" value="ce" id="ce"> Civil Engineering<br>
+						<input type="radio" name="subject" value="cs" id="cs"> Computer Science
+					</ul>
+				</div>
+				<div class="col">
+					<ul>
+						<input type="radio" name="subject" value="ecn" id="ecn"> Economics<br>
+						<input type="radio" name="subject" value="ed" id="ed"> Education<br>
+						<input type="radio" name="subject" value="ee" id="ee"> Electrical Engineering<br>
+						<input type="radio" name="subject" value="egr" id="egr"> Engineering<br>
+						<input type="radio" name="subject" value="eng" ed="eng"> English
+					</ul>
+				</div>
+				<div class="col">
+					<ul>
+						<input type="radio" name="subject" value="env" id="env"> Environmental Studies<br>
+						<input type="radio" name="subject" value="fa" id="fa"> Fine Arts<br>
+						<input type="radio" name="subject" value="geo" id="geo"> Geography<br>
+						<input type="radio" name="subject" value="his" id="his"> History<br>
+						<input type="radio" name="subject" value="lang" id="lang"> Languages
+					</ul>
+				</div>
+				<div class="col">
+					<ul>
+						<input type="radio" name="subject" value="mth" id="mth"> Mathematics<br>
+						<input type="radio" name="subject" value="me" id="me"> Mechanical Engineering<br>
+						<input type="radio" name="subject" value="mus" id="mus"> Music<br>
+						<input type="radio" name="subject" value="nrs" id="nrs"> Nursing<br>
+						<input type="radio" name="subject" value="phl" id="phl"> Philosophy
+					</ul>
+				</div>
+				<div class="col">
+					<ul>
+						<input type="radio" name="subject" value="phy" id="phy"> Physics<br>
+						<input type="radio" name="subject" value="pol" id="pol"> Political Science<br>
+						<input type="radio" name="subject" value="psy" id="psy"> Psychology<br>
+						<input type="radio" name="subject" value="soc" id="soc"> Sociology<br>
+						<input type="radio" name="subject" value="the" id="the"> Theology
+					</ul>
+				</div>
+			</div>
+			
+			<!-- Submit Button -->
+			<button id="submitSubject" type="button">Go to Subject Courses </button>
+
+	
+	</div><!-- end main page-->
            
-		<!--Navigation bar INSERT-->
-		<div id="nav-placeholder"> </div>
+
+	<div id="specificCourses" class="container">
 
         <div class="row">
             <div class="col" id="chooseCourse">
                 <p>Choose the course:</p>
             </div>
-        </div>
+		</div>
 		
 		<!-- Classes from the Database are put there -->
 		<div id="class-placeholder"></div>
@@ -96,6 +174,7 @@
 					</div>
 					
 				  </div>
+
 				  <div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 					<button id = "subbuttonClass" type="button" class="btn btn-primary">Submit</button>
@@ -142,10 +221,8 @@
 				</div>
 			  </div>
 			</div>
-		</div>
-		
-		
-    </div>
+		</div> <!-- end post features -->
+    </div> <!-- end specific courses -->
 </body>
 
 </html>

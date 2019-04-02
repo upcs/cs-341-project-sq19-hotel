@@ -2,47 +2,70 @@
 
 $(document).ready(function () {
 	
-	$("#post-features").hide();
-	$("#class-features").show();
-	$("#chooseCourse").show();
+	//Main page showing
+	$("#specificCourses").hide();
+	
+	//What happens when the button is clicked
+	$("#submitSubject").click(function() {
+		//alert("submit");
 
+		//console.log("Button Clicked Main Page");
+		
+		var checkedClassSubject = $('input[name=subject]:checked').val(); 
 
-	//hard coded for now for CS
-	//Declare variable later for both post requests
-	$.post("/classesGet/", {department: 'CS'}, function(data) {
-		//alert(data);
+		alert(checkedClassSubject);
+	
+		$("#mainPage").hide();
+		$("#specificCourses").show();
+		
+		//Class Courses shown for now
+		$("#post-features").hide();
+		$("#class-features").show();
+		$("#chooseCourse").show();
+		
+		classesGet(checkedClassSubject);
 
-		//This is what will be replaced in the html
-		var list = document.getElementById("class-placeholder");
-
-		//Run for loop to go through and create elements for each class
-		for(i = 0 ; i < data.length; i++)
-		{
-			console.log("Data length:" + data.length);
-			//Create ID for the element
-			var id = "my" + i.toString() + "Div";
-			//alert(data[i].number);
-			
-			var listinstance = document.createElement("input");
-			
-			//Set attributes
-			listinstance.setAttribute("type","radio");
-			listinstance.setAttribute("name","radio");
-			listinstance.setAttribute("id",id);
-			listinstance.setAttribute("value",(data[i].department).toString() + " " + (data[i].number).toString()); //only the number for post request later
-			
-			list.appendChild(listinstance);
-			
-			var label = document.createElement("label");
-			label.setAttribute("for",id);
-			label.innerHTML = (data[i].department + data[i].number + " - " + data[i].name).toString();
-			list.appendChild(label);
-			
-			var linebreak = document.createElement("br");
-			list.appendChild(linebreak);
-			
-		}
 	});
+
+
+	function classesGet(checkedClassSubject) {
+		//hard coded for now for CS
+		//Declare variable later for both post requests
+		$.post("/classesGet/", {department: checkedClassSubject}, function(data) {
+			//alert(data);
+
+			//This is what will be replaced in the html
+			var list = document.getElementById("class-placeholder");
+
+			//Run for loop to go through and create elements for each class
+			for(i = 0 ; i < data.length; i++)
+			{
+				//console.log("Data length:" + data.length);
+				//Create ID for the element
+				var id = "my" + i.toString() + "Div";
+				//alert(data[i].number);
+				
+				var listinstance = document.createElement("input");
+				
+				//Set attributes
+				listinstance.setAttribute("type","radio");
+				listinstance.setAttribute("name","radio");
+				listinstance.setAttribute("id",id);
+				listinstance.setAttribute("value",(data[i].department).toString() + " " + (data[i].number).toString()); //only the number for post request later
+				
+				list.appendChild(listinstance);
+				
+				var label = document.createElement("label");
+				label.setAttribute("for",id);
+				label.innerHTML = (data[i].department + data[i].number + " - " + data[i].name).toString();
+				list.appendChild(label);
+				
+				var linebreak = document.createElement("br");
+				list.appendChild(linebreak);
+				
+			}
+		});
+	}
 
 	//What happens when the button is clicked
 	$("#submitClass").click(function() {
