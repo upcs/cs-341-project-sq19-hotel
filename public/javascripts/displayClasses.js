@@ -133,73 +133,11 @@ $(document).ready(function () {
 			}
 		});
 	} //end function
-
-
-	//Display comments with posts
-	$("#submitPost").click(function() {
-		//alert("hi");
-		
-		var checkedPost = $('input[name=radio]:checked').val(); 
-		
-		//Must select a course so it is not null
-		if (checkedPost == null) {
-			alert("Please Select a Post");
-			return;
-		}
-		else {
-			var postComment = checkedPost.id;
-			alert(postComment);
-			//var getParent = checkedPost.substring(0,checkedPost.indexOf("-"));
-			//var getNum = checkedPost.substring(checkedPost.indexOf("-"),checkedPost.length);
-		}
-		
-		//REPLACE ALL Class information with Post information
-		$("#class-placeholder").html(checkedClassNum.toString());
-		
-		$("#class-features").hide();
-		$("#chooseCourse").hide();
-		$("#post-features").hide();
-		
-		$("#comment-features").show();
-
-		//Call function that shows the corresponding posts
-		postComment(postInfo);
-	});
 	
-	//Depending on the number of times you click the options is how many times it prints the results???
-	function postComment(postInfo) {
-		//Put another post request here
-		$.post("/classPostsGet/", {parent: checkedClassNum}, function(data) {
-
-			//This is what will be replaced in the html
-			var list = document.getElementById("post-placeholder");
-			
-			//Run for loop to go through and create elements for each class
-			for(i = 0 ; i < data.length; i++)
-			{
-				//console.log("data posts", data.length);
-				//Create ID for the element
-				var id = "my" + i.toString() + "Div";
-
-				var listinstance = document.createElement("input");
-				
-				//Set attributes
-				listinstance.setAttribute("type","radio");
-				listinstance.setAttribute("name","radio");
-				listinstance.setAttribute("value",(data[i].id).toString()); //only the number for post request later
-				
-				list.appendChild(listinstance);
-				
-				var label = document.createElement("label");
-				label.setAttribute("for",id);
-				label.innerHTML = ("&nbsp" + data[i].title + " - " + data[i].body).toString();
-				list.appendChild(label);
-				
-				var linebreak = document.createElement("br");
-				list.appendChild(linebreak);
-			}
-		});
-	} //end function
+	$("#submitPost").click(function() {
+		alert("hi");
+		
+		
 	});
 	
 /* 	$("#goBackClasstoIndex").click(function() {
