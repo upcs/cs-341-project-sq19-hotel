@@ -41,7 +41,7 @@ function submitClickPost() {
 	
 	var parent = $("#class-placeholder").text();
 	
-	alert(parent);
+	//alert(parent);
 	console.log(parent);
 
 	//var courseID = courseInfo.substring(0,courseInfo.indexOf(" "));

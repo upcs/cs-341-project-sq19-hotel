@@ -11,6 +11,8 @@ var newClassRouter = require('./routes/postNewClass');
 var loginRouter = require('./routes/postLogin');
 var newClassGetRouter = require('./routes/classesGet');
 var classPostGetRouter = require('./routes/classPostsGet');
+var classCommentGetRouter = require('./routes/classCommentGet');
+
 var checkTokenRouter = require('./routes/checkToken');
 
 var app = express();
@@ -32,6 +34,8 @@ app.use('/postNewClass', newClassRouter);
 app.use('/postLogin', loginRouter);
 app.use('/classesGet', newClassGetRouter);
 app.use('/classPostsGet', classPostGetRouter);
+app.use('/classCommentGet', classCommentGetRouter);
+
 app.use('/checkToken', checkTokenRouter);
 
 // catch 404 and forward to error handler
