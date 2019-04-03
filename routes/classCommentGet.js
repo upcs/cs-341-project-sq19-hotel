@@ -15,7 +15,6 @@ router.post('/', function(req, res, next) {
 	
 	//Select classes from the corresponding department that is sent in
 	dbms.dbquery("SELECT * FROM posts WHERE id = '"+req.body.id+"' ", function(err, results) {
-=
         if(!err) {
 		    //console.log(results);
 
