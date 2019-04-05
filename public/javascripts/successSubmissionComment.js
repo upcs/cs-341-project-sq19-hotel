@@ -30,8 +30,22 @@ function submitClickComment() {
 		alert("Comment area is invalid.");	
 	}
 	else {
-		//alert("safe"); 
-		$(".input-group").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
+		if (!validateSubmissionPost(textPostTitle, textPostBody)) {
+			alert("One of the text areas is invalid.");	
+		}
+		else {
+			var token = document.cookie;
+			$.post("/checkToken", {token: token}, function(result){
+				if(!result[0]){
+					$("#newPost").replaceWith("<h3> <br> Please sign up or log in first! <br> </h3>" );
+				}
+				else{
+					var id = ~~((Math.random() * 100000000) + 1000);
+					$.post("/postComment", {title: textPostTitle, body: textPostBody, parent: , user: result[1].user, id: id}, function(result){ });
+					$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
+				}
+			});
+		}
 	}
 }
 
