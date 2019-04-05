@@ -9,58 +9,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.js -->
+	<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+ 
+	<!-- Popper.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js" integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp" crossorigin="anonymous"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <!-- Favion Error -->
-    <link rel="shortcut icon" href=""></link>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
+	<!-- Use JS-->
+	<script src = "/javascripts/displayClasses.js"/></script>
+	
+	<!-- For adding new post -->
+	<script src = "/javascripts/successSubmissionPost.js"/></script>
+	<script src = "/javascripts/successSubmissionClass.js"/></script>
 	
 	<!-- For the Nav Menu -->
-	<script src="//code.jquery.com/jquery.min.js"></script>
-	<script src = "/javascripts/nav.js"/></script>
+	<!--<script src = "/javascripts/nav.js"/></script>-->
+	<!-- Log In -->
+	<script>
+		$(document).ready(function(){
+			var token = document.cookie;
+			if(token != null && token != ""){
+				$.post("/checkToken", {token: token},
+				function(result){
+					if(result[0]){
+						$("#signUp").remove();
+						$("#log").replaceWith('<a class="nav-link" id="loggedIn" href="/html/logout.html">' + result[1].user + '</a>');
+					}
+				});
+			}
+		});
+	</script>
+	
+	<!-- Classes and Posts -->
+	<script/>
+		$(document).ready(submissionPostSetUpMain);
+		$(document).ready(submissionClassSetUpMain);
+	</script>
+
 </head>
 
 <body>
-    
+	<!-- Navigation Bar, must be hard coded bc the path is different than the others -->
 	<div class="container">
-	
-	<!-- Hard coded because the paths are different than the other pages-->
-	<div class="row">
+
+        <div class="row">
             <div class="col">
-                <nav class="navbar navbar-expand navbar-light bg-light">
-                    <div class="collapse navbar-collapse">
+                <nav class="navbar navbar-expand navbar-static-top navbar-light bg-light">
+                    <div class="navbar collapse navbar-collapse">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="../index.html">Home</a>
+                            <li class="nav-item" >
+                                <a class="nav-link" href="index.html">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/html/placeholder.html">News</a>
+                                <a class="nav-link" href="/html/contact.html">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/html/placeholder.html">Contact</a>
+                                <a class="nav-link" href="/html/about.html">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/html/placeholder.html">About</a>
+                                <a class="nav-link" id="signUp" href="/html/signup.html">Sign Up</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/html/login.html">Log In</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/html/signup.html">Sign Up</a>
-                            </li>
+							<li class="nav-item">
+								<a class="nav-link" id="log" href="/html/login.html">Log In</a>
+							</li>
                         </ul>
                     </div>
                 </nav>
             </div>
         </div>
-
-        <div class="row">
+		
+		<!-- UPAF Banner -->
+		<div class="row">
             <div class="col">
                 <div id="splash">
                     <h1>University of Portland Academic Forum</h1>
@@ -68,65 +91,174 @@
             </div>
         </div>
 		
-        <!--Navigation bar INSERT
-		<div id="nav-placeholder"> </div> -->
+	</div>
+
+	<div id="mainPage" class = "container" >
+
+		<div class="row">
+				<div class="col">
+					<p>Choose the subject you need help with:</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<ul>
+						<input type="radio" name="subject" value="bio" id="bio"> Biology<br>
+						<input type="radio" name="subject" value="bus" id="bus"> Business<br>
+						<input type="radio" name="subject" value="chm" id="chm"> Chemistry<br>
+						<input type="radio" name="subject" value="ce" id="ce"> Civil Engineering<br>
+						<input type="radio" name="subject" value="cs" id="cs"> Computer Science
+					</ul>
+				</div>
+				<div class="col">
+					<ul>
+						<input type="radio" name="subject" value="ecn" id="ecn"> Economics<br>
+						<input type="radio" name="subject" value="ed" id="ed"> Education<br>
+						<input type="radio" name="subject" value="ee" id="ee"> Electrical Engineering<br>
+						<input type="radio" name="subject" value="egr" id="egr"> Engineering<br>
+						<input type="radio" name="subject" value="eng" ed="eng"> English
+					</ul>
+				</div>
+				<div class="col">
+					<ul>
+						<input type="radio" name="subject" value="env" id="env"> Environmental Studies<br>
+						<input type="radio" name="subject" value="fa" id="fa"> Fine Arts<br>
+						<input type="radio" name="subject" value="geo" id="geo"> Geography<br>
+						<input type="radio" name="subject" value="his" id="his"> History<br>
+						<input type="radio" name="subject" value="lang" id="lang"> Languages
+					</ul>
+				</div>
+				<div class="col">
+					<ul>
+						<input type="radio" name="subject" value="mth" id="mth"> Mathematics<br>
+						<input type="radio" name="subject" value="me" id="me"> Mechanical Engineering<br>
+						<input type="radio" name="subject" value="mus" id="mus"> Music<br>
+						<input type="radio" name="subject" value="nrs" id="nrs"> Nursing<br>
+						<input type="radio" name="subject" value="phl" id="phl"> Philosophy
+					</ul>
+				</div>
+				<div class="col">
+					<ul>
+						<input type="radio" name="subject" value="phy" id="phy"> Physics<br>
+						<input type="radio" name="subject" value="pol" id="pol"> Political Science<br>
+						<input type="radio" name="subject" value="psy" id="psy"> Psychology<br>
+						<input type="radio" name="subject" value="soc" id="soc"> Sociology<br>
+						<input type="radio" name="subject" value="the" id="the"> Theology
+					</ul>
+				</div>
+			</div>
+			
+			<!-- Submit Button -->
+			<button id="submitSubject" type="button">Go to Subject Courses </button>
+
+	
+	</div><!-- end main page-->
+           
+
+	<div id="specificCourses" class="container">
 
         <div class="row">
-            <div class="col">
-                <p>Choose the subject you need help with:</p>
+            <div class="col" id="chooseCourse">
+                <p>Choose the course:</p>
             </div>
-        </div>
+		</div>
+		
+		<!-- Classes from the Database are put there -->
+		<div id="class-placeholder"></div>
+		<div id="post-placeholder"></div>
 
-        <div class="row">
-            <div class="col">
-                <ul>
-                    <li><a href="html/placeholder.html">Biology</li>
-                    <li><a href="html/placeholder.html">Business</li>
-                    <li><a href="html/placeholder.html">Chemistry</li>
-                    <li><a href="html/placeholder.html">Civil Engineering</li>
-                    <li><a href="html/computerscience.html">Computer Science</a></li>
-                </ul>
-            </div>
-            <div class="col">
-                <ul>
-                    <li><a href="html/placeholder.html">Economics</li>
-                    <li><a href="html/placeholder.html">Education</li>
-                    <li><a href="html/placeholder.html">Electrical Engineering</li>
-                    <li><a href="html/placeholder.html">Engineering</li>
-                    <li><a href="html/placeholder.html">English</li>
-                </ul>
-            </div>
-            <div class="col">
-                <ul>
-                    <li><a href="html/placeholder.html">Environmental Studies</li>
-                    <li><a href="html/placeholder.html">Fine Arts</li>
-                    <li><a href="html/placeholder.html">Geography</li>
-                    <li><a href="html/placeholder.html">History</li>
-                    <li><a href="html/placeholder.html">Languages</li>
-                </ul>
-            </div>
-            <div class="col">
-                <ul>
-                    <li><a href="html/placeholder.html">Mathematics</li>
-                    <li><a href="html/placeholder.html">Mechanical Engineering</li>
-                    <li><a href="html/placeholder.html">Music</li>
-                    <li><a href="html/placeholder.html">Nursing</li>
-                    <li><a href="html/placeholder.html">Philosophy</li>
-                </ul>
-            </div>
-            <div class="col">
-                <ul>
-                    <li><a href="html/placeholder.html">Physics</li>
-                    <li><a href="html/placeholder.html">Political Science</li>
-                    <li><a href="html/placeholder.html">Psychology</li>
-                    <li><a href="html/placeholder.html">Sociology</li>
-                    <li><a href="html/placeholder.html">Theology</li>
-                    <li><a href="html/placeholder.html">Others</li>
-                </ul>
-            </div>
-        </div>
+		<!--Post features-->
+		<div id="class-features">
+			<!-- Submit Button -->
+			<button id ="submitClass" type = "button">Go to Class Posts </button>
+			<br><br>
+							
+			<!-- Button trigger modal -->
+			<button type="button" data-toggle="modal" data-target="#exampleModalLong">
+			  Create a New Class
+			</button>
 
-    </div>
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">New Class</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+									
+					<div id="newClassTitle">
+						<label for="newClassAb">Course Abbreviation: </label>
+						<br>
+						<input type="text" id="courseAb" name="courseAb" placeholder="(i.e. CS, EGR, etc.)">
+						<br><br>
+						
+						<label for="newClassNum">Course ID #: </label>
+						<br>
+						<input type="text" id="courseNum" name="courseNum" placeholder="(i.e. 341, 301, etc.)">
+						<br><br>
+					
+						<label for="newClassName">Course Name: </label>
+						<br>
+						<input type="text" id="courseName" name="courseName" placeholder="(i.e. Intro to Computer Science)">
+						<br><br>
+						
+					</div>
+					
+				  </div>
+
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button id = "subbuttonClass" type="button" class="btn btn-primary">Submit</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		
+		
+		
+		</div>
+		
+		<!--Post features-->
+		<div id="post-features">
+					
+			<!-- Add a new Class here--> 
+			<button type="button" data-toggle="modal" data-target="#exampleModal">Add a New Post</button>
+			
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">ADD NEW POST</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				  </div>
+				<div class="modal-body">
+					<div id = "newPost">
+						<div id="newPostTitle">
+							<label for="newtitle">TITLE: </label>
+							<input type="text" id="title" name="title" placeholder="Enter title for new post...">
+						</div>
+
+						<div id = "newPostBody">
+								<textarea id="text" rows="4" cols="50" placeholder="Enter any educational post here..."></textarea><br>
+						</div>
+					</div>
+				</div>
+				  <div class="modal-footer">
+					<button type="button" data-dismiss="modal">Cancel</button>
+					<button id="addPostButton" type="button">Add Post</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		</div> <!-- end post features -->
+    </div> <!-- end specific courses -->
 </body>
 
 </html>

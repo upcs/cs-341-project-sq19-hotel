@@ -2,6 +2,7 @@
 		Created: 3/20/2019
 */
 
+var jwt = require('jsonwebtoken');
 var express = require('express');
 var router = express.Router();
 
@@ -16,10 +17,14 @@ router.post('/', function(req, res, next) {
 	console.log(email);
 	dbms.dbquery("SELECT * FROM accounts WHERE email = '" + email + "' AND pass = '" + pass + "';",
 	function(error, results) {
-		console.log(results[0]);
 		if(results[0] != undefined){
 			console.log("User found!");
-			return res.status(200).send(true);
+			var token = jwt.sign({
+				email: email,
+				user: results[0].user,
+				clearance: results[0].clearance
+			}, 'secret', {expiresIn: '1h'});
+			return res.status(200).send([true, token]);
 		}
 		return res.status(401).send(false);
 	});

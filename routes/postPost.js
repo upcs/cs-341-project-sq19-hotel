@@ -14,9 +14,13 @@ router.post('/', function(req, res, next) {
 	var title = req.body.title;
 	var body = req.body.body;
 	var user = req.body.user;
+	var parent = req.body.parent;
 	var id = req.body.id;
-	console.log(title + body);
-	dbms.dbquery("INSERT INTO posts (title, body, user, id) VALUES ('" + title + "', '" + body + "', '" + user + "', '" + id + "');",
+;
+	
+	console.log("INSERT INTO posts (title, body, user, parent, id) VALUES ('" + title + "', '" + body + "', '" + user + "', '" + parent + "', '" + id + "'");
+	
+	dbms.dbquery("INSERT INTO posts (title, body, user, parent, id) VALUES ('" + title + "', '" + body + "', '" + user + "', '" + parent + "', '" + id + "');",
 	function(error, results) {
 	});
 });

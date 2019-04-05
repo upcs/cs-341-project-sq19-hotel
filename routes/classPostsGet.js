@@ -8,20 +8,30 @@ var dbms = require('./dbms.js');
 
 router.post('/', function(req, res, next) {
 	
-	console.log("SELECT * FROM posts WHERE id = '"+req.body.id+"' AND coursenum =' "+req.body.coursenum+" ' ");
+	var parentIn = req.body.parent;
+	console.log(parentIn);
+	
+	console.log("SELECT * FROM posts WHERE parent = '"+req.body.parent+"' ");
 	
 	//Select classes from the corresponding department that is sent in
-	dbms.dbquery("SELECT * FROM posts WHERE id = '"+req.body.id+"' AND coursenum =' "+req.body.coursenum+" ' ", function(err, results) {
+	dbms.dbquery("SELECT * FROM posts WHERE parent = '"+req.body.parent+"' ", function(err, results) {
+	//dbms.dbquery("SELECT * FROM posts WHERE id = '"+req.body.id+"' ", function(err, results) {
+
         if(!err) {
-		    console.log(results);
+		    //console.log(results);
 
 			//Create empty arrays for the department and number
-			var posts = [];
+			var postTitle = [];
+			var postBody = [];
 			
 			for (i = 0; i < results.length; i++) {
-				if (results[i].department == "CS") {
+				if (results[i].parent == parentIn) {
+
 					postTitle[i] = results[i].title;
-					postTitle[i] = results[i].body;
+					postBody[i] = results[i].body;
+					
+					console.log("*", postTitle[i]);
+					console.log("-", postBody[i]);
 				}
 
 			}

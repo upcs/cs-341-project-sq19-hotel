@@ -38,27 +38,42 @@ function submitClickPost() {
 	// Make the  input consistent 
 	var textPostTitle = $("#title").val();
 	var textPostBody = $("#text").val();
+	
+	var parent = $("#class-placeholder").text();
+	
+	alert(parent);
+	console.log(parent);
 
-	console.log(textPostTitle);
-	console.log(textPostBody);
+	//var courseID = courseInfo.substring(0,courseInfo.indexOf(" "));
+	//var courseNum = courseInfo.substring(courseInfo.indexOf(" "),courseInfo.length);
+	
+	//console.log(textPostTitle);
+	//console.log(textPostBody);
 		
 	// If statement to determine if vegan was detected, or to proceed.
 	if (!validateSubmissionPost(textPostTitle, textPostBody)) {
 		alert("One of the text areas is invalid.");	
 	}
 	else {
-		//alert("safe");
-		$.post("/postPost", {title: textPostTitle, body: textPostBody, id: "CS", user: "NuxollForPrez2020"},
-		function(result){
+		var token = document.cookie;
+		var user = null;
+		$.post("/checkToken", {token: token}, function(result){
+			if(!result[0]){
+				$("#newPost").replaceWith("<h3> <br> Please sign up or log in first! <br> </h3>" );
+			}
+			else{
+				var id = ~~((Math.random() * 100000000) + 1000);
+				$.post("/postPost", {title: textPostTitle, body: textPostBody, parent: parent, user: result[1].user, id: id}, function(result){ });
+				$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
+			}
 		});
-		$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
-		//alert("Form removed"); 
+				//alert("Form removed"); 
 	}
 }
 
 //Main call that actually starts all the function running
 function submissionPostSetUpMain() {
-	$("#subbuttonPost").click(submitClickPost);
+	$("#addPostButton").click(submitClickPost);
 }
 
 //Export to test

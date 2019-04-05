@@ -3,60 +3,39 @@
 <html>
 
 <head>
-    <title>University of Portland Academic Forum</title>
+    <title>UPAF About</title>
     <!-- Meta Content Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- JQuery -->
 	<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <!-- Popper.js -->
+ 
+	<!-- Popper.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js" integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp" crossorigin="anonymous"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
-    <!-- Link the functions -->
-    <script src = "/javascripts/successSubmissionPost.js"/></script>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/styleAbout.css">
 	
 	<!-- For the Nav Menu -->
-	<script src="//code.jquery.com/jquery.min.js"></script>
 	<script src = "../javascripts/nav.js"/></script>
-	
-	<!-- After JS, and yes this syntax is correct-->
-	<script  />
-		$(document).ready(submissionPostSetUpMain);
-	</script>
-
 </head>
 
 <body>
-    <div class="container">
 
-		<!--Navigation bar INSERT-->
-		<div id="nav-placeholder"> </div>
+    <!--Navigation bar INSERT-->
+	<div id="nav-placeholder"> </div>
+	
+	<div id="content"
 
+		<h1 class="text-center">About UPAF</h1>
+		<br>
+	
+		<p id="textAbout"> This academic forum was created for students by students. UPAF is a website that enables students to post academic questions in any classes they may be in. Any student can find these posts and comment any helpful information that may help. </p>
+	
+	</div>
 
-        <div class="row">
-            <div class="col">
-                <p>NEW POST</p>
-            </div>
-        </div>
-
-		<div id = "newPost">
-			<div id="newPostTitle">
-				<label for="newtitle">TITLE: </label>
-				 <input type="text" id="title" name="title" placeholder="Enter title for new post...">
-			</div>
-
-			<div id = "newPostBody">
-					<textarea id="text" rows="4" cols="50" placeholder="Enter any educational post here..."></textarea><br>
-					<input id ="subbuttonPost" type="submit" value = "SUBMIT NEW POST">
-			</div>
-		</div>
-    </div>
 </body>
-
-</html>
