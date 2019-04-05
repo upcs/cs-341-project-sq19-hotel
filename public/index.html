@@ -24,7 +24,9 @@
 	
 	<!-- For classes/posts -->
 	<script src = "/javascripts/successSubmissionPost.js"/></script>
-	<script src = "/javascripts/successSubmissionClass.js"/></script>
+	<script src = "/javascripts/successSubmissionClass.js"/></script>	
+	<script src = "/javascripts/successSubmissionComment.js"/></script>
+
 	
 	<!-- For the Nav Menu -->
 	<!--<script src = "/javascripts/nav.js"/></script>-->
@@ -47,7 +49,8 @@
 	<!-- Classes and Posts -->
 	<script/>
 		$(document).ready(submissionPostSetUpMain);
-		$(document).ready(submissionClassSetUpMain);
+		$(document).ready(submissionClassSetUpMain);		
+		$(document).ready(submissionCommentSetUpMain);
 	</script>
 
 </head>
@@ -268,10 +271,40 @@
 		
 		<!-- Comment features -->
 		<div id="comment-features">
-			<button id="submitComment" class="btn btn-info" type="button">Add Comment</button>
-					<div id="comment-placeholder"></div>
+			
+			<button id = "addCommentButton" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Comment</button>
 
-		</div>
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Add Comment</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				  </div>
+				  <div class="modal-body" id="newClassTitle">
+						<label for="newComment">Entry Here: </label>
+						<br>
+						<div id = "newPostBody">
+							<textarea id="textComment" rows="4" cols="50" placeholder="Comment here..."></textarea><br>
+						</div>
+						
+					</div>
+				 <div id="commmentButtonsPopup" class="modal-footer">
+					<button type="button" data-dismiss="modal">Cancel</button>
+					<button id="submitCommentButton" type="button">Add Comment</button>
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+			
+	
+		</div> <!-- end comment features-->
 
 		
     </div> <!-- end specific courses -->

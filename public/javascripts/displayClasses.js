@@ -140,11 +140,11 @@ $(document).ready(function () {
 		//alert("hi");
 		
 		$("#post-features").hide();		
-		$("#post-placeholder").hide();
+		$("#post-placeholder").show();
 		$("#comment-features").show();
 
 		var checkPost = $('input[name=post]:checked').val(); 
-		console.log(checkPost);
+		//console.log(checkPost);
 		//alert(checkPost);
 		
 		if (checkPost == undefined || checkPost == null) {
@@ -156,15 +156,13 @@ $(document).ready(function () {
 			var getPostTitle = checkPost.substring(checkPost.indexOf("\n"),checkPost.indexOf("\n \n"));
 			var getPostBody = checkPost.substring(checkPost.indexOf("\n \n"),checkPost.length);
 			
-			console.log(getPostTitle);
-			console.log(getPostBody);
+			//console.log(getPostTitle);
+			//console.log(getPostBody);
 			
-			
+			$("#post-placeholder").html((getPostId).toString());
  			$("#post-placeholder-title").html((getPostTitle + "\n").toString());
 			$("#post-placeholder-body").html((getPostBody).toString());
 
-
-			//$("#post-placeholder").html((getPostTitle).toString() + " " + (getPostBody).toString());
 			//REPLACE ALL post information with comment information
 			//Call function that shows the corresponding comments
 			classComment(getPostId);
@@ -210,27 +208,6 @@ $(document).ready(function () {
 			
 		});
 	}
-	
-/* 	$("#goBackClasstoIndex").click(function() {
-		alert("hi");
 
-		$("#mainPage").show();
-
-		$("#specificCourses").hide();
-		
-		$("#class-features").hide();
-		$("#chooseCourse").hide();
-		$("#post-features").hide();
-	});
- */
-/* 	("#goBackPosttoClass").click(function() {
-		$("#class-features").show();
-		$("#specificCourses").show();
-		
-		$("#chooseCourse").show();
-		$("#post-features").hide();
-	}); */
-
-	
 });
 

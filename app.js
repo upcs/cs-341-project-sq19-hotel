@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var newAccountRouter = require('./routes/postSignup');
 var newPostRouter = require('./routes/postPost');
 var newClassRouter = require('./routes/postNewClass');
+var newCommentRouter = require('./routes/postComment');
+
 var loginRouter = require('./routes/postLogin');
 var newClassGetRouter = require('./routes/classesGet');
 var classPostGetRouter = require('./routes/classPostsGet');
@@ -31,6 +33,8 @@ app.use('/postSignup', newAccountRouter);
 app.use('/', indexRouter);
 app.use('/postPost', newPostRouter);
 app.use('/postNewClass', newClassRouter);
+app.use('/postComment', newCommentRouter);
+
 app.use('/postLogin', loginRouter);
 app.use('/classesGet', newClassGetRouter);
 app.use('/classPostsGet', classPostGetRouter);
