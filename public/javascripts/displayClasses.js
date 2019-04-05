@@ -27,8 +27,10 @@ $(document).ready(function () {
 		
 		//Class Courses shown for now
 		$("#post-features").hide();
+		$("#comment-features").hide();
 		$("#class-features").show();
 		$("#chooseCourse").show();
+
 
 	});
 
@@ -52,7 +54,7 @@ $(document).ready(function () {
 				
 				//Set attributes
 				listinstance.setAttribute("type","radio");
-				listinstance.setAttribute("name","radio");
+				listinstance.setAttribute("name","classes");
 				listinstance.setAttribute("id",id);
 				listinstance.setAttribute("value",(data[i].department).toString() + " " + (data[i].number).toString()); //only the number for post request later
 				
@@ -75,7 +77,7 @@ $(document).ready(function () {
 	//What happens when the button is clicked
 	$("#submitClass").click(function() {
 		
-		var checkedClassNum = $('input[name=radio]:checked').val(); 
+		var checkedClassNum = $('input[name=classes]:checked').val(); 
 		
 		//Must select a course so it is not null
 		if (checkedClassNum == null) {
@@ -92,6 +94,7 @@ $(document).ready(function () {
 		
 		$("#class-features").hide();
 		$("#chooseCourse").hide();
+		$("#comment-features").hide();
 
 		$("#post-features").show();
 
@@ -118,7 +121,7 @@ $(document).ready(function () {
 				
 				//Set attributes
 				listinstance.setAttribute("type","radio");
-				listinstance.setAttribute("name","radio");
+				listinstance.setAttribute("name","post");
 				listinstance.setAttribute("value",(data[i].id).toString()); //only the number for post request later
 				
 				list.appendChild(listinstance);
@@ -135,10 +138,67 @@ $(document).ready(function () {
 	} //end function
 	
 	$("#submitPost").click(function() {
-		alert("hi");
+		//alert("hi");
 		
+		$("#post-features").hide();		
+		$("#post-placeholder").hide();
+
+		$("#comment-features").show();
+
+		var checkPost = $('input[name=post]:checked').val(); 
+
+		console.log(checkPost);
 		
+		if (checkPost == null) {
+			alert("Please Select a Post");
+			return;
+		}
+
+		//REPLACE ALL post information with comment information
+		//Call function that shows the corresponding comments
+		classComment(checkPost);
+
 	});
+	
+	function classComment(checkPost) {
+		$.post("/classCommentGet/", {parent: checkPost}, function(data) {
+			
+			var list = document.getElementById("comment-placeholder");
+			
+			alert(checkPost.parent);
+			
+			//Display the post clicked on with title and body
+
+			//Run for loop to go through and create elements for each class
+			for(i = 0 ; i < data.length; i++)
+			{
+				console.log("data posts", data[i].body);
+				//alert("hey");
+				//Create ID for the element
+				var id = "my" + i.toString() + "Div";
+
+				var listinstance = document.createElement("input");
+				
+				//Set attributes
+				listinstance.setAttribute("type","radio");
+				listinstance.setAttribute("name","comment");
+				listinstance.setAttribute("value",(data[i].id).toString()); //only the number for post request later
+				
+				list.appendChild(listinstance);
+				
+				var label = document.createElement("label");
+				label.setAttribute("for",id);
+				label.innerHTML = ("&nbsp" + data[i].body).toString();
+				list.appendChild(label);
+				
+				var linebreak = document.createElement("br");
+				list.appendChild(linebreak);
+			}
+			
+			
+			
+		});
+	}
 	
 /* 	$("#goBackClasstoIndex").click(function() {
 		alert("hi");

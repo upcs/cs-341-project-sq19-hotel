@@ -8,13 +8,13 @@ var dbms = require('./dbms.js');
 
 router.post('/', function(req, res, next) {
 	
-	var idIn = req.body.id;
+	var parentIn = req.body.parent;
 	console.log(parentIn);
 	
-	console.log("SELECT * FROM posts WHERE id = '"+req.body.id+"' ");
+	console.log("SELECT * FROM posts WHERE parent = '"+req.body.parent+"' ");
 	
 	//Select classes from the corresponding department that is sent in
-	dbms.dbquery("SELECT * FROM posts WHERE id = '"+req.body.id+"' ", function(err, results) {
+	dbms.dbquery("SELECT * FROM posts WHERE parent = '"+req.body.parent+"' ", function(err, results) {
         if(!err) {
 		    //console.log(results);
 
@@ -22,9 +22,9 @@ router.post('/', function(req, res, next) {
 			var comments = [];
 			
 			for (i = 0; i < results.length; i++) {
-				if (results[i].id == idIn) {
+				if (results[i].parent == parentIn) {
 
-					comments[i] = results[i].title;
+					comments[i] = results[i].body;
 					
 					console.log("-", comments[i]);
 				}
