@@ -19,19 +19,16 @@ $(document).ready(function () {
 		else {
 			classesGet(checkedClassSubject);
 			
+			//Else statement occurs, hide things and show things for class courses
+			$("#mainPage").hide();
+			$("#specificCourses").show();
+			
+			//Class Courses shown for now
+			$("#post-features").hide();
+			$("#comment-features").hide();
+			$("#class-features").show();
+			$("#chooseCourse").show();
 		}
-		
-		//Else statement occurs, hide things and show things for class courses
-		$("#mainPage").hide();
-		$("#specificCourses").show();
-		
-		//Class Courses shown for now
-		$("#post-features").hide();
-		$("#comment-features").hide();
-		$("#class-features").show();
-		$("#chooseCourse").show();
-
-
 	});
 
 	function classesGet(checkedClassSubject) {
@@ -87,19 +84,18 @@ $(document).ready(function () {
 		else {
 			var getDep = checkedClassNum.substring(0,checkedClassNum.indexOf(" "));
 			var getNum = checkedClassNum.substring(checkedClassNum.indexOf(" "),checkedClassNum.length);
+			//Call function that shows the corresponding posts
+			classPost(checkedClassNum);
+			
+			//REPLACE ALL Class information with Post information
+			$("#class-placeholder").html(checkedClassNum.toString());
+					
+			$("#class-features").hide();
+			$("#chooseCourse").hide();
+			$("#comment-features").hide();
+
+			$("#post-features").show();
 		}
-		
-		//REPLACE ALL Class information with Post information
-		$("#class-placeholder").html(checkedClassNum.toString());
-		
-		$("#class-features").hide();
-		$("#chooseCourse").hide();
-		$("#comment-features").hide();
-
-		$("#post-features").show();
-
-		//Call function that shows the corresponding posts
-		classPost(checkedClassNum);
 	});
 	
 	//Depending on the number of times you click the options is how many times it prints the results???
@@ -122,7 +118,10 @@ $(document).ready(function () {
 				//Set attributes
 				listinstance.setAttribute("type","radio");
 				listinstance.setAttribute("name","post");
-				listinstance.setAttribute("value",(data[i].id).toString()); //only the number for post request later
+				listinstance.setAttribute("value",data[i].id + "\n" + data[i].title + "\n \n" + data[i].body);
+
+				
+				//listinstance.setAttribute("value",(data[i].id).toString() + " " + (data[i].title).toString() + " - " (data[i].body).toString(); //only the number for post request later
 				
 				list.appendChild(listinstance);
 				
@@ -142,21 +141,34 @@ $(document).ready(function () {
 		
 		$("#post-features").hide();		
 		$("#post-placeholder").hide();
-
 		$("#comment-features").show();
 
 		var checkPost = $('input[name=post]:checked').val(); 
-
 		console.log(checkPost);
+		//alert(checkPost);
 		
-		if (checkPost == null) {
+		if (checkPost == undefined || checkPost == null) {
 			alert("Please Select a Post");
 			return;
 		}
+		else {
+ 			var getPostId = checkPost.substring(0,checkPost.indexOf("\n"));
+			var getPostTitle = checkPost.substring(checkPost.indexOf("\n"),checkPost.indexOf("\n \n"));
+			var getPostBody = checkPost.substring(checkPost.indexOf("\n \n"),checkPost.length);
+			
+			console.log(getPostTitle);
+			console.log(getPostBody);
+			
+			
+ 			$("#post-placeholder-title").html((getPostTitle + "\n").toString());
+			$("#post-placeholder-body").html((getPostBody).toString());
 
-		//REPLACE ALL post information with comment information
-		//Call function that shows the corresponding comments
-		classComment(checkPost);
+
+			//$("#post-placeholder").html((getPostTitle).toString() + " " + (getPostBody).toString());
+			//REPLACE ALL post information with comment information
+			//Call function that shows the corresponding comments
+			classComment(getPostId);
+		}
 
 	});
 	
@@ -165,9 +177,8 @@ $(document).ready(function () {
 			
 			var list = document.getElementById("comment-placeholder");
 			
-			alert(checkPost.parent);
-			
 			//Display the post clicked on with title and body
+			
 
 			//Run for loop to go through and create elements for each class
 			for(i = 0 ; i < data.length; i++)
@@ -180,7 +191,7 @@ $(document).ready(function () {
 				var listinstance = document.createElement("input");
 				
 				//Set attributes
-				listinstance.setAttribute("type","radio");
+				listinstance.setAttribute("type","checkbox");
 				listinstance.setAttribute("name","comment");
 				listinstance.setAttribute("value",(data[i].id).toString()); //only the number for post request later
 				
@@ -188,7 +199,7 @@ $(document).ready(function () {
 				
 				var label = document.createElement("label");
 				label.setAttribute("for",id);
-				label.innerHTML = ("&nbsp" + data[i].body).toString();
+				label.innerHTML = ("\n" + "&nbsp" + "&nbsp" + data[i].body).toString();
 				list.appendChild(label);
 				
 				var linebreak = document.createElement("br");
