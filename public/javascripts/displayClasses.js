@@ -118,7 +118,7 @@ $(document).ready(function () {
 				//Set attributes
 				listinstance.setAttribute("type","radio");
 				listinstance.setAttribute("name","post");
-				listinstance.setAttribute("value",data[i].id + "\n" + data[i].title + "\n \n" + data[i].body);
+				listinstance.setAttribute("value",data[i].id + "\n" + data[i].title + "\n \n" + data[i].body + "\n \n \n" + data[i].user);
 
 				
 				//listinstance.setAttribute("value",(data[i].id).toString() + " " + (data[i].title).toString() + " - " (data[i].body).toString(); //only the number for post request later
@@ -142,10 +142,10 @@ $(document).ready(function () {
 		$("#post-features").hide();		
 		$("#post-placeholder").show();
 		$("#comment-features").show();
-
+		$("#user-placeholder").show();
 		var checkPost = $('input[name=post]:checked').val(); 
 		//console.log(checkPost);
-		//alert(checkPost);
+		alert(checkPost);
 		
 		if (checkPost == undefined || checkPost == null) {
 			alert("Please Select a Post");
@@ -154,13 +154,16 @@ $(document).ready(function () {
 		else {
  			var getPostId = checkPost.substring(0,checkPost.indexOf("\n"));
 			var getPostTitle = checkPost.substring(checkPost.indexOf("\n"),checkPost.indexOf("\n \n"));
-			var getPostBody = checkPost.substring(checkPost.indexOf("\n \n"),checkPost.length);
+			var getPostUser = checkPost.substring(checkPost.indexOf("\n \n \n"),checkPost.length);
+			var getPostBody = checkPost.substring(checkPost.indexOf("\n \n"),checkPost.indexOf("\n \n \n"));
 			
 			//console.log(getPostTitle);
 			//console.log(getPostBody);
 			
+
 			$("#post-placeholder").html((getPostId).toString());
  			$("#post-placeholder-title").html((getPostTitle + "\n").toString());
+			$("#user-placeholder").html((getPostUser).toString());
 			$("#post-placeholder-body").html((getPostBody).toString());
 
 			//REPLACE ALL post information with comment information
