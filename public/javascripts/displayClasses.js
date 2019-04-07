@@ -145,7 +145,7 @@ $(document).ready(function () {
 		$("#user-placeholder").show();
 		var checkPost = $('input[name=post]:checked').val(); 
 		//console.log(checkPost);
-		alert(checkPost);
+		//alert(checkPost);
 		
 		if (checkPost == undefined || checkPost == null) {
 			alert("Please Select a Post");
@@ -177,7 +177,6 @@ $(document).ready(function () {
 		$.post("/classCommentGet/", {parent: checkPost}, function(data) {
 			
 			var list = document.getElementById("comment-placeholder");
-			
 			//Display the post clicked on with title and body
 			
 
@@ -188,9 +187,7 @@ $(document).ready(function () {
 				//alert("hey");
 				//Create ID for the element
 				var id = "my" + i.toString() + "Div";
-
 				var listinstance = document.createElement("input");
-				
 				//Set attributes
 				listinstance.setAttribute("type","checkbox");
 				listinstance.setAttribute("name","comment");

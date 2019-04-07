@@ -13,7 +13,8 @@ router.post('/', function(req, res, next) {
 	
 	var parentIn = req.body.parent;
 	console.log(parentIn);
-	
+	comments = [];
+	size = 0;
 	console.log("SELECT * FROM posts WHERE parent = '"+req.body.parent+"' ");
 	getComments(parentIn, function(){
 		res.send(comments);

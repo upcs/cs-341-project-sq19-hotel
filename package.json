@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/upcs/cs-341-project-sq19-hotel#readme",
   "devDependencies": {
-    "jest": "^24.7.0"
+    "jest": "^24.7.1"
   },
   "dependencies": {
     "codecov": "^3.3.0",
