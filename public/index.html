@@ -22,9 +22,11 @@
 	<!-- Use JS-->
 	<script src = "/javascripts/displayClasses.js"/></script>
 	
-	<!-- For adding new post -->
+	<!-- For classes/posts -->
 	<script src = "/javascripts/successSubmissionPost.js"/></script>
-	<script src = "/javascripts/successSubmissionClass.js"/></script>
+	<script src = "/javascripts/successSubmissionClass.js"/></script>	
+	<script src = "/javascripts/successSubmissionComment.js"/></script>
+
 	
 	<!-- For the Nav Menu -->
 	<!--<script src = "/javascripts/nav.js"/></script>-->
@@ -47,7 +49,8 @@
 	<!-- Classes and Posts -->
 	<script/>
 		$(document).ready(submissionPostSetUpMain);
-		$(document).ready(submissionClassSetUpMain);
+		$(document).ready(submissionClassSetUpMain);		
+		$(document).ready(submissionCommentSetUpMain);
 	</script>
 
 </head>
@@ -150,7 +153,7 @@
 			</div>
 			
 			<!-- Submit Button -->
-			<button id="submitSubject" type="button">Go to Subject Courses </button>
+			<button id="submitSubject" type="button" class="btn btn-info">Go to Subject Courses </button>
 
 	
 	</div><!-- end main page-->
@@ -166,20 +169,27 @@
 		
 		<!-- Classes from the Database are put there -->
 		<div id="class-placeholder"></div>
-		<div id="post-placeholder"></div>
+		<div id="post-placeholder-container">
+			<div id="post-placeholder"></div>
+			<div id="post-placeholder-title"></div>
+			<div id="user-placeholder"></div>
+			<div id="post-placeholder-body"></div>
+			<div id="post-placeholder-space"> <p> 
+			</p> </div>
 
-		<!--Post features-->
+		</div>
+			
+		<div id="comment-placeholder"></div>
+
+
+		<!--Class features-->
 		<div id="class-features">
 			<!-- Submit Button -->
-			<button id ="submitClass" type = "button">Go to Class Posts </button>
-			<br><br>
-							
-			<!-- Button trigger modal -->
-			<button type="button" data-toggle="modal" data-target="#exampleModalLong">
-			  Create a New Class
-			</button>
+			<button id ="submitClass" type = "button" class = "btn btn-info">Go to Class Posts </button>
+			<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalLong">Create a New Class</button>
+			<!-- <button id ="goBackClasstoIndex" type = "button" class = "btn btn-light">Back</button> -->
 
-			<!-- Modal -->
+			<!-- Create a New Class pop-up -->
 			<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -211,25 +221,26 @@
 					
 				  </div>
 
-				  <div class="modal-footer">
+				  <div id="classButtonsPopup" class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 					<button id = "subbuttonClass" type="button" class="btn btn-primary">Submit</button>
 				  </div>
 				</div>
 			  </div>
-			</div>
-		
-		
-		
-		</div>
+			</div> <!-- end class post popup -->
+			
+		</div> <!-- end class course -->
 		
 		<!--Post features-->
 		<div id="post-features">
 					
 			<!-- Add a new Class here--> 
-			<button type="button" data-toggle="modal" data-target="#exampleModal">Add a New Post</button>
-			
-						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<button id="submitPost" type="button" class="btn btn-info">Go to Post</button>
+			<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Add a New Post</button>
+			<!-- <button id ="goBackPosttoClass" type = "button" class = "btn btn-light">Back</button> -->
+
+			<!-- Create a post pop-up-->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 				<div class="modal-content">
 				  <div class="modal-header">
@@ -250,14 +261,53 @@
 						</div>
 					</div>
 				</div>
-				  <div class="modal-footer">
+				  <div id="postButtonsPopup" class="modal-footer">
 					<button type="button" data-dismiss="modal">Cancel</button>
 					<button id="addPostButton" type="button">Add Post</button>
 				  </div>
 				</div>
 			  </div>
-			</div>
+			</div> <!-- end new post popup-->
 		</div> <!-- end post features -->
+		
+		<!-- Comment features -->
+		<div id="comment-features">
+			
+			<button id = "addCommentButton" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Comment</button>
+
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Add Comment</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+				  </div>
+				  <div class="modal-body" id="newClassTitle">
+						<label for="newComment">Entry Here: </label>
+						<br>
+						<div id = "newPostBody">
+							<textarea id="textComment" rows="4" cols="50" placeholder="Comment here..."></textarea><br>
+						</div>
+						
+					</div>
+				 <div id="commmentButtonsPopup" class="modal-footer">
+					<button type="button" data-dismiss="modal">Cancel</button>
+					<button id="submitCommentButton" type="button">Add Comment</button>
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+			
+	
+		</div> <!-- end comment features-->
+
+		
     </div> <!-- end specific courses -->
 </body>
 

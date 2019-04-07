@@ -19,25 +19,49 @@ function validateSubmissionComment(comment) {
 
 //Function that does all the hard work in conjuction with the html
 function submitClickComment() {
-		
-	// Make the  input consistent 
-	var comment = $("#comment-textarea").val();
 	
-	console.log(comment);
+	//alert("made it");
+	// Make the  input consistent 
+	var comment = $("#textComment").val();
+	
+	console.log("HI", comment);
+	
+	var parent = $("#post-placeholder").text();
+	
+	//alert(parent);
+	console.log(parent);
 		
 	// If statement to determine if vegan was detected, or to proceed.
 	if (!validateSubmissionComment(comment)) {
-		alert("Comment area is invalid.");	
+		alert("The text area is invalid.");	
 	}
 	else {
-		//alert("safe"); 
-		$(".input-group").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
+		var token = document.cookie;
+		var user = null;
+		/* $.post("/checkToken", {token: token}, function(result){
+			if(!result[0]){
+				$("#newClassTitle").replaceWith("<h3> <br> Please sign up or log in first! <br> </h3>" );
+			}
+			else{
+				var id = ~~((Math.random() * 100000000) + 1000);
+				$.post("/postComment", {body: comment, parent: parent, user: result[1].user, id: id}, function(result){ });
+				$("#newClassTitle").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
+			}
+		}); */
+		
+		var id = ~~((Math.random() * 100000000) + 1000);
+		$.post("/postComment", {body: comment, parent: parent, user: "test", id: id}, function(result){ });
+		$("#newCommentSubmit").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
+
+		//alert("Form removed"); 
 	}
 }
 
 //Main call that actually starts all the function running
 function submissionCommentSetUpMain() {
-	$("#comment-button").click(submitClickComment);
+	$("#submitCommentButton").click(submitClickComment);
+		console.log("HI");
+
 }
 
 //Export to test
