@@ -189,8 +189,15 @@ $(document).ready(function () {
 				//alert("hey");
 				//Create ID for the element
 				var id = "my" + i.toString() + "Div";
-				var listinstance = document.createElement("input");
+				var name = document.createElement("label");
+				name.innerHTML = (data[i].user).toString();
+				list.appendChild(name);
+
+				var linebreak1 = document.createElement("br");
+				list.appendChild(linebreak1);
+
 				//Set attributes
+				var listinstance = document.createElement("input");
 				listinstance.setAttribute("type","checkbox");
 				listinstance.setAttribute("name","comment");
 				listinstance.setAttribute("value",(data[i].id).toString()); //only the number for post request later
@@ -202,8 +209,8 @@ $(document).ready(function () {
 				label.innerHTML = ("\n" + "&nbsp" + "&nbsp" + data[i].body).toString();
 				list.appendChild(label);
 				
-				var linebreak = document.createElement("br");
-				list.appendChild(linebreak);
+				var linebreak2 = document.createElement("br");
+				list.appendChild(linebreak2);
 			}
 			
 			
