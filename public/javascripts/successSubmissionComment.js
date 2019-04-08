@@ -51,7 +51,7 @@ function submitClickComment() {
 		
 		var id = ~~((Math.random() * 100000000) + 1000);
 		$.post("/postComment", {body: comment, parent: parent, user: "test", id: id}, function(result){ });
-		$("#newCommentSubmit").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
+		$("#commentButtonsPopup").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
 
 		//alert("Form removed"); 
 	}
@@ -60,7 +60,7 @@ function submitClickComment() {
 //Main call that actually starts all the function running
 function submissionCommentSetUpMain() {
 	$("#submitCommentButton").click(submitClickComment);
-		console.log("HI");
+		console.log("Add comment button clicked");
 
 }
 
