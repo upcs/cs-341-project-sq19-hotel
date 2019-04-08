@@ -139,10 +139,7 @@ $(document).ready(function () {
 	$("#submitPost").click(function() {
 		//alert("hi");
 		
-		$("#post-features").hide();		
-		$("#post-placeholder").show();
-		$("#comment-features").show();
-		$("#user-placeholder").show();
+		
 		var checkPost = $('input[name=post]:checked').val(); 
 		//console.log(checkPost);
 		//alert(checkPost);
@@ -152,6 +149,11 @@ $(document).ready(function () {
 			return;
 		}
 		else {
+			$("#post-features").hide();		
+			$("#post-placeholder").show();
+			$("#comment-features").show();
+			$("#user-placeholder").show();
+		
  			var getPostId = checkPost.substring(0,checkPost.indexOf("\n"));
 			var getPostTitle = checkPost.substring(checkPost.indexOf("\n"),checkPost.indexOf("\n \n"));
 			var getPostUser = checkPost.substring(checkPost.indexOf("\n \n \n"),checkPost.length);
