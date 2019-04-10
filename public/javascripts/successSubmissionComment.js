@@ -38,21 +38,21 @@ function submitClickComment() {
 	else {
 		var token = document.cookie;
 		var user = null;
-		/* $.post("/checkToken", {token: token}, function(result){
+		$.post("/checkToken", {token: token}, function(result){
 			if(!result[0]){
-				$("#newClassTitle").replaceWith("<h3> <br> Please sign up or log in first! <br> </h3>" );
+				$("#commentButtonsPopup").replaceWith("<h3> <br> Please login first! <br> </h3>" );
 			}
 			else{
 				var id = ~~((Math.random() * 100000000) + 1000);
 				$.post("/postComment", {body: comment, parent: parent, user: result[1].user, id: id}, function(result){ });
-				$("#newClassTitle").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
+				$("#commentButtonsPopup").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
 			}
-		}); */
+		});
 		
-		var id = ~~((Math.random() * 100000000) + 1000);
+		/*var id = ~~((Math.random() * 100000000) + 1000);
 		$.post("/postComment", {body: comment, parent: parent, user: "test", id: id}, function(result){ });
 		$("#commentButtonsPopup").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
-
+		*/
 		//alert("Form removed"); 
 	}
 }
