@@ -24,12 +24,7 @@ function submitClickComment() {
 	// Make the  input consistent 
 	var comment = $("#textComment").val();
 	
-	console.log("HI", comment);
-	
 	var parent = $("#post-placeholder").text();
-	
-	//alert(parent);
-	console.log(parent);
 		
 	// If statement to determine if vegan was detected, or to proceed.
 	if (!validateSubmissionComment(comment)) {
@@ -38,22 +33,20 @@ function submitClickComment() {
 	else {
 		var token = document.cookie;
 		var user = null;
-		$.post("/checkToken", {token: token}, function(result){
-			if(!result[0]){
-				$("#commentButtonsPopup").replaceWith("<h3> <br> Please login first! <br> </h3>" );
-			}
-			else{
-				var id = ~~((Math.random() * 100000000) + 1000);
-				$.post("/postComment", {body: comment, parent: parent, user: result[1].user, id: id}, function(result){ });
-				$("#commentButtonsPopup").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
-			}
-		});
-		
-		/*var id = ~~((Math.random() * 100000000) + 1000);
-		$.post("/postComment", {body: comment, parent: parent, user: "test", id: id}, function(result){ });
-		$("#commentButtonsPopup").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
-		*/
-		//alert("Form removed"); 
+		if(token == null || token == "")
+			$("#commentButtonsPopup").replaceWith("<h3> <br> Please login first! <br> </h3>" );
+		else{
+			$.post("/checkToken", {token: token}, function(result){
+				if(!result[0]){
+					$("#commentButtonsPopup").replaceWith("<h3> <br> Please login first! <br> </h3>" );
+				}
+				else{
+					var id = ~~((Math.random() * 100000000) + 1000);
+					$.post("/postComment", {body: comment, parent: parent, user: result[1].user, id: id}, function(result){ });
+					$("#commentButtonsPopup").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
+				}
+			});
+		}
 	}
 }
 

@@ -36,7 +36,6 @@ function validateSubmission(textCourseAb, textCourseNum, textCourseName) {
 		return false;
 	}
 	else { //Passes everything
-		console.log('PASS');
 		return true;
 
 	}
@@ -52,29 +51,33 @@ function submitClick() {
 	var textCourseNum = $("#courseNum").val();
 	var textCourseName = $("#courseName").val();
 	
-	console.log(textCourseAb);
-	console.log(textCourseNum);
-	console.log(textCourseName);
-		
 	// If statement to determine if vegan was detected, or to proceed.
 	if (!validateSubmission(textCourseAb, textCourseNum, textCourseName)) {
 		alert("One of the text areas is invalid.");	
 	}
 	else {
-		//alert("safe"); 
-		$("#newClassTitle").replaceWith("<h3> <br> Class has been submitted. <br> </h3>" );
-		//alert("Form removed"); 
-		
-		
-		$.post("/postNewClass", {department: textCourseAb, number: textCourseNum, name: textCourseName}, function(result){
-			if(result){
-				console.log("New Class complete");
-				$('.newClassTitle').replaceWith("Course Added!");
-			}
-			else{
-				alert("There was a problem creating the class.");
-			}
-		});
+		var token = document.cookie;
+		var user = null;
+		if(token == null || token == "")
+			$("#newClassTitle").replaceWith("<h3> <br> Please login first! <br> </h3>" );
+		else{
+			$.post("/checkToken", {token: token}, function(result){
+				if(!result[0]){
+					$("#newClassTitle").replaceWith("<h3> <br> Please login first! <br> </h3>" );
+				}
+				else{
+					$.post("/postNewClass", {department: textCourseAb, number: textCourseNum, name: textCourseName}, function(result){
+						if(result){
+							console.log("New Class complete");
+							$('#newClassTitle').replaceWith("Course Added!");
+						}
+						else{
+							alert("There was a problem creating the class.");
+						}
+					});
+				}
+			});
+		}
 	}
 }
 
