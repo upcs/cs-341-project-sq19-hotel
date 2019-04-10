@@ -27,7 +27,6 @@ function validateSubmissionPost(textPostTitle, textPostBody) {
 		return false;
 	}
 	else { //Passes everything
-		console.log('PASS');
 		return true;
 	}
 }
@@ -38,17 +37,7 @@ function submitClickPost() {
 	// Make the  input consistent 
 	var textPostTitle = $("#title").val();
 	var textPostBody = $("#text").val();
-	
 	var parent = $("#class-placeholder").text();
-	
-	//alert(parent);
-	console.log(parent);
-
-	//var courseID = courseInfo.substring(0,courseInfo.indexOf(" "));
-	//var courseNum = courseInfo.substring(courseInfo.indexOf(" "),courseInfo.length);
-	
-	//console.log(textPostTitle);
-	//console.log(textPostBody);
 		
 	// If statement to determine if vegan was detected, or to proceed.
 	if (!validateSubmissionPost(textPostTitle, textPostBody)) {
@@ -57,17 +46,21 @@ function submitClickPost() {
 	else {
 		var token = document.cookie;
 		var user = null;
-		$.post("/checkToken", {token: token}, function(result){
-			if(!result[0]){
-				$("#newPost").replaceWith("<h3> <br> Please sign up or log in first! <br> </h3>" );
-			}
-			else{
-				var id = ~~((Math.random() * 100000000) + 1000);
-				$.post("/postPost", {title: textPostTitle, body: textPostBody, parent: parent, user: result[1].user, id: id}, function(result){ });
-				$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
-			}
-		});
-				//alert("Form removed"); 
+		if(token == null || token == "")
+			$("#newPost").replaceWith("<h3> <br> Please sign up or log in first! <br> </h3>" );
+		else{
+			$.post("/checkToken", {token: token}, function(result){
+				console.log(result);
+				if(!result[0]){
+					$("#newPost").replaceWith("<h3> <br> Please sign up or log in first! <br> </h3>" );
+				}
+				else{
+					var id = ~~((Math.random() * 100000000) + 1000);
+					$.post("/postPost", {title: textPostTitle, body: textPostBody, parent: parent, user: result[1].user, id: id}, function(result){ });
+					$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
+				}
+			});
+		}
 	}
 }
 

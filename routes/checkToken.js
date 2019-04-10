@@ -11,8 +11,10 @@ var dbms = require('./dbms.js');
 
 router.post('/', function(req, res, next) {
 	var token = req.body.token;
-	if(token == null || token == "")
-		return res.status(500).send([false, null]);
+	if(token == null || token == ""){
+		console.log('Token is empty');
+		return res.status(401).send([false, null]);
+	}
 	try{
 		console.log('Verifying and decoding token.');
 		//decoded = jwt.verify(token, 'secret');
@@ -27,8 +29,8 @@ router.post('/', function(req, res, next) {
 		return res.send([true, decoded]);
 	}
 	catch(err){
-		console.log(error);
-		return res.status(401).send([false], null);
+		console.log(err);
+		return res.status(401).send([false, null]);
 	}
 });
 
