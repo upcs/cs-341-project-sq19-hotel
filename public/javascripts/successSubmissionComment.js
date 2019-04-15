@@ -33,6 +33,7 @@ function submitClickComment() {
 	else {
 		var token = document.cookie;
 		var user = null;
+		console.log(token);
 		if(token == null || token == "")
 			$("#commentButtonsPopup").replaceWith("<h3> <br> Please login first! <br> </h3>" );
 		else{
@@ -43,7 +44,62 @@ function submitClickComment() {
 				else{
 					var id = ~~((Math.random() * 100000000) + 1000);
 					$.post("/postComment", {body: comment, parent: parent, user: result[1].user, id: id}, function(result){ });
-					$("#commentButtonsPopup").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
+				
+					//Delay needed or else it will get the post too early and wont have the new comment
+					var delayInMilliseconds = 1000; //1 second
+
+					//Call function to display new comment LIVE
+					setTimeout;
+					
+					setTimeout(function() {
+					  //code to be executed after 1 second
+					  
+					  classComment(parent);
+
+					  function classComment(checkPost) {
+						$.post("/classCommentGet/", {parent: checkPost}, function(data) {
+							
+							var list = document.getElementById("comment-placeholder");
+							//Display the post clicked on with title and body
+							
+							indexNewComment = data.length-1;
+							//Go to the last element added 
+							newComment = data[(indexNewComment)];
+							
+							console.log("new comment: ", newComment);
+							
+							//Create ID for the element
+							var id = "my" + (indexNewComment).toString + "Div";
+							var name = document.createElement("div");
+							name.innerHTML = (newComment.user).toString();
+							list.appendChild(name);
+
+							var linebreak1 = document.createElement("br");
+							list.appendChild(linebreak1);
+
+							//Set attributes
+							/* var listinstance = document.createElement("input");
+							listinstance.setAttribute("type","checkbox");
+							listinstance.setAttribute("name","comment");
+							listinstance.setAttribute("value",(newComment.id).toString()); //only the number for post request later
+							 */
+							//list.appendChild(listinstance);
+							
+							var label = document.createElement("label");
+							label.setAttribute("for",id);
+							label.innerHTML = ("\n" + "&nbsp" + "&nbsp" + newComment.body).toString();
+							list.appendChild(label);
+							
+							var linebreak2 = document.createElement("br");
+							list.appendChild(linebreak2);
+							
+							$("#commentButtonsPopup").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
+						
+						});
+					  }
+					}, delayInMilliseconds);
+
+				
 				}
 			});
 		}
@@ -53,8 +109,7 @@ function submitClickComment() {
 //Main call that actually starts all the function running
 function submissionCommentSetUpMain() {
 	$("#submitCommentButton").click(submitClickComment);
-		console.log("Add comment button clicked");
-
+		//console.log("Add comment button clicked");
 }
 
 //Export to test

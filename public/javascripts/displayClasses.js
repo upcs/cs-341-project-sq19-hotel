@@ -37,7 +37,7 @@ $(document).ready(function () {
 		$.post("/classesGet/", {department: checkedClassSubject}, function(data) {
 
 			//This is what will be replaced in the html
-			var list = document.getElementById("class-placeholder");
+			var div = document.getElementById("class-placeholder");
 
 			//Run for loop to go through and create elements for each class
 			for(i = 0 ; i < data.length; i++)
@@ -47,6 +47,10 @@ $(document).ready(function () {
 				var id = "my" + i.toString() + "Div";
 				//alert(data[i].number);
 				
+				
+				var list = document.createElement("div");
+				list.setAttribute("class", "subjectDiv");
+
 				var listinstance = document.createElement("input");
 				
 				//Set attributes
@@ -66,6 +70,8 @@ $(document).ready(function () {
 				
 				var linebreak = document.createElement("br");
 				list.appendChild(linebreak);
+				
+				div.appendChild(list);
 				
 			}
 		});
@@ -104,7 +110,7 @@ $(document).ready(function () {
 		$.post("/classPostsGet/", {parent: checkedClassNum}, function(data) {
 
 			//This is what will be replaced in the html
-			var list = document.getElementById("post-placeholder");
+			var div = document.getElementById("post-placeholder");
 			
 			//Run for loop to go through and create elements for each class
 			for(i = 0 ; i < data.length; i++)
@@ -112,6 +118,9 @@ $(document).ready(function () {
 				//console.log("data posts", data.length);
 				//Create ID for the element
 				var id = "my" + i.toString() + "Div";
+				
+				var list = document.createElement("div");
+				list.setAttribute("class", "postDiv");
 
 				var listinstance = document.createElement("input");
 				
@@ -120,9 +129,6 @@ $(document).ready(function () {
 				listinstance.setAttribute("name","post");
 				listinstance.setAttribute("value",data[i].id + "\n" + data[i].title + "\n \n" + data[i].body + "\n \n \n" + data[i].user);
 
-				
-				//listinstance.setAttribute("value",(data[i].id).toString() + " " + (data[i].title).toString() + " - " (data[i].body).toString(); //only the number for post request later
-				
 				list.appendChild(listinstance);
 				
 				var label = document.createElement("label");
@@ -132,6 +138,8 @@ $(document).ready(function () {
 				
 				var linebreak = document.createElement("br");
 				list.appendChild(linebreak);
+				
+				div.appendChild(list);
 			}
 		});
 	} //end function
@@ -178,18 +186,23 @@ $(document).ready(function () {
 	function classComment(checkPost) {
 		$.post("/classCommentGet/", {parent: checkPost}, function(data) {
 			
-			var list = document.getElementById("comment-placeholder");
+			var div = document.getElementById("comment-placeholder");
+			
 			//Display the post clicked on with title and body
 			
-
 			//Run for loop to go through and create elements for each class
 			for(i = 0 ; i < data.length; i++)
 			{
+
+				var list = document.createElement("div");
+				list.setAttribute("class", "commentDiv");
+
 				console.log("data posts", data[i].body);
 				//alert("hey");
 				//Create ID for the element
 				var id = "my" + i.toString() + "Div";
-				var name = document.createElement("label");
+				var name = document.createElement("div");
+				name.setAttribute("class", "userNamePost");
 				name.innerHTML = (data[i].user).toString();
 				list.appendChild(name);
 
@@ -197,20 +210,24 @@ $(document).ready(function () {
 				list.appendChild(linebreak1);
 
 				//Set attributes
-				var listinstance = document.createElement("input");
-				listinstance.setAttribute("type","checkbox");
+				/* var listinstance = document.createElement("input");
+				listinstance.removeAttribute("type");
 				listinstance.setAttribute("name","comment");
 				listinstance.setAttribute("value",(data[i].id).toString()); //only the number for post request later
-				
-				list.appendChild(listinstance);
+				 */
+				//list.appendChild(listinstance);
 				
 				var label = document.createElement("label");
-				label.setAttribute("for",id);
+				label.setAttribute("for",id);				
+
 				label.innerHTML = ("\n" + "&nbsp" + "&nbsp" + data[i].body).toString();
 				list.appendChild(label);
 				
 				var linebreak2 = document.createElement("br");
 				list.appendChild(linebreak2);
+				
+
+				div.appendChild(list);
 			}
 			
 			
