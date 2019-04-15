@@ -33,6 +33,7 @@ function submitClickComment() {
 	else {
 		var token = document.cookie;
 		var user = null;
+		console.log(token);
 		if(token == null || token == "")
 			$("#commentButtonsPopup").replaceWith("<h3> <br> Please login first! <br> </h3>" );
 		else{
