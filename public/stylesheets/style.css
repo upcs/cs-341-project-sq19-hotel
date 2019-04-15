@@ -52,8 +52,6 @@ body {
 
 .listTopic {
     padding-left: 0;
-	/* column-fill: balance; */
-
 }
 
 .topicCol {
@@ -71,10 +69,9 @@ body {
 	border-radius: 5px;
 	background: white;
 	box-shadow: 2px 4px lightgray;
-
 }
 
-.topic:hover{ 
+.topic:hover { 
   background-color: #25205e;
   color: white;
 }
@@ -96,6 +93,13 @@ body {
   color: white;
 }
 
+#class-placeholder-title {
+	margin: 0.5%;
+	padding: 1% 2% 1%;
+	font-size: 15pt;
+	font-weight: bold;
+}
+
 /* Posts */
 
 .postDiv {
@@ -103,7 +107,7 @@ body {
 	margin: 0.5%;
 	padding: 1% 2% 1%;
 	border-spacing: 10%;
-	background: #f2f2f2;
+	background: white;
 	box-shadow: 2px 4px lightgray;
 }
 
@@ -114,13 +118,51 @@ body {
 
 /* Comments */
 
-.commentDiv {
+
+/* Top info */
+#post-placeholder-id {
+	color: white;
+}
+
+#post-placeholder-title {
 	border: 2px solid black;
 	margin: 1%;
 	border-radius: 1%;
 	padding: 1% 2% 1%;
 	border-spacing: 10%;
 	background: #f2f2f2;
+	box-shadow: 2px 4px gray;
+}
+
+#user-placeholder {
+	border: 2px solid black;
+	margin: 1%;
+	border-radius: 1%;
+	padding: 1% 2% 1%;
+	border-spacing: 10%;
+	background: #25205e;
+	box-shadow: 2px 4px gray;
+	color: white;
+}
+
+#post-placeholder-body {
+	border: 2px solid black;
+	margin: 1%;
+	border-radius: 1%;
+	padding: 1% 2% 1%;
+	border-spacing: 10%;
+	background: #lightgray;
+	box-shadow: 2px 4px gray;
+
+}
+
+.commentDiv {
+	border: 2px solid black;
+	margin: 1%;
+	border-radius: 1%;
+	padding: 1% 2% 1%;
+	border-spacing: 10%;
+	background: white;
 	box-shadow: 2px 4px gray;
 }
 
@@ -131,7 +173,8 @@ body {
 	border-radius: 1%;
 	padding: 1% 1% 1%;
 	border-spacing: 5%;
-	background: lightgray;
+	background: #25205e;
+	color: white;
 }
 
 #loggedIn {
