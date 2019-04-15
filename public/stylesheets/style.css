@@ -48,6 +48,78 @@ body {
 	text-align: bottom;
 }
 
+/* Class Topics */
+
+.listTopic {
+    padding-left: 0;
+	/* column-fill: balance; */
+
+}
+
+.topicCol {
+	padding: 0%;
+	column-width: 225px;
+	column-fill: balance;
+}
+
+.topic {
+	/* width: 100% */
+	border: 2px solid black;
+	margin: 5%;
+	padding: 5% 10% 5%;
+	border-spacing: 15%;
+	border-radius: 5px;
+	background: white;
+	box-shadow: 2px 4px lightgray;
+
+}
+
+/* Subjects */
+
+.subjectDiv {
+	/* width: 200% */
+	border: 2px solid black;
+	margin: 0.5%;
+	padding: 1% 2% 1%;
+	border-spacing: 10%;
+	background: white;
+	box-shadow: 2px 4px lightgray;
+}
+
+/* Posts */
+
+
+.postDiv {
+	border: 2px solid black;
+	margin: 0.5%;
+	padding: 1% 2% 1%;
+	border-spacing: 10%;
+	background: #f2f2f2;
+	box-shadow: 2px 4px lightgray;
+
+}
+
+/* Comments */
+
+.commentDiv {
+	border: 2px solid black;
+	margin: 1%;
+	border-radius: 1%;
+	padding: 1% 2% 1%;
+	border-spacing: 10%;
+	background: #f2f2f2;
+	box-shadow: 2px 4px gray;
+
+}
+
+.userNamePost {
+	border: 2px solid black;
+	margin: 1%;
+	border-radius: 1%;
+	padding: 1% 1% 1%;
+	border-spacing: 5%;
+	background: lightgray;
+}
 #loggedIn {
 	color: blue;
 }

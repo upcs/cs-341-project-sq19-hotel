@@ -70,7 +70,7 @@ function submitClickComment() {
 							
 							//Create ID for the element
 							var id = "my" + (indexNewComment).toString + "Div";
-							var name = document.createElement("label");
+							var name = document.createElement("div");
 							name.innerHTML = (newComment.user).toString();
 							list.appendChild(name);
 
@@ -78,12 +78,12 @@ function submitClickComment() {
 							list.appendChild(linebreak1);
 
 							//Set attributes
-							var listinstance = document.createElement("input");
+							/* var listinstance = document.createElement("input");
 							listinstance.setAttribute("type","checkbox");
 							listinstance.setAttribute("name","comment");
 							listinstance.setAttribute("value",(newComment.id).toString()); //only the number for post request later
-							
-							list.appendChild(listinstance);
+							 */
+							//list.appendChild(listinstance);
 							
 							var label = document.createElement("label");
 							label.setAttribute("for",id);
