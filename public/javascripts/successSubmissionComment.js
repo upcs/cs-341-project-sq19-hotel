@@ -43,19 +43,25 @@ function submitClickComment() {
 				else{
 					var id = ~~((Math.random() * 100000000) + 1000);
 					$.post("/postComment", {body: comment, parent: parent, user: result[1].user, id: id}, function(result){ });
-					
-					console.log("reload");
-					
+				
+					//Delay needed or else it will get the post too early and wont have the new comment
+					var delayInMilliseconds = 1000; //1 second
+
 					//Call function to display new comment LIVE
-					classComment(parent);
+					setTimeout;
 					
-					function classComment(checkPost) {
+					setTimeout(function() {
+					  //code to be executed after 1 second
+					  
+					  classComment(parent);
+
+					  function classComment(checkPost) {
 						$.post("/classCommentGet/", {parent: checkPost}, function(data) {
 							
 							var list = document.getElementById("comment-placeholder");
 							//Display the post clicked on with title and body
 							
-							indexNewComment = data.length-1 ;
+							indexNewComment = data.length-1;
 							//Go to the last element added 
 							newComment = data[(indexNewComment)];
 							
@@ -87,10 +93,12 @@ function submitClickComment() {
 							list.appendChild(linebreak2);
 							
 							$("#commentButtonsPopup").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
-
+						
 						});
-					}
-					
+					  }
+					}, delayInMilliseconds);
+
+				
 				}
 			});
 		}
