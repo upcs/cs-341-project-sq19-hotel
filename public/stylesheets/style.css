@@ -74,6 +74,11 @@ body {
 
 }
 
+.topic:hover{ 
+  background-color: #25205e;
+  color: white;
+}
+
 /* Subjects */
 
 .subjectDiv {
@@ -86,8 +91,12 @@ body {
 	box-shadow: 2px 4px lightgray;
 }
 
-/* Posts */
+.subjectDiv:hover { 
+  background-color: #25205e;
+  color: white;
+}
 
+/* Posts */
 
 .postDiv {
 	border: 2px solid black;
@@ -96,7 +105,11 @@ body {
 	border-spacing: 10%;
 	background: #f2f2f2;
 	box-shadow: 2px 4px lightgray;
+}
 
+.postDiv:hover {
+  background-color: #25205e;
+  color: white;	
 }
 
 /* Comments */
@@ -109,8 +122,8 @@ body {
 	border-spacing: 10%;
 	background: #f2f2f2;
 	box-shadow: 2px 4px gray;
-
 }
+
 
 .userNamePost {
 	border: 2px solid black;
@@ -120,6 +133,7 @@ body {
 	border-spacing: 5%;
 	background: lightgray;
 }
+
 #loggedIn {
 	color: blue;
 }
