@@ -26,8 +26,15 @@ $(document).ready(function () {
 			//Class Courses shown for now
 			$("#post-features").hide();
 			$("#comment-features").hide();
-			$("#class-features").show();
-			$("#chooseCourse").show();
+			$("#createClass").hide();
+			var token = document.cookie;
+			$.post("/checkToken", {token: token}, function(results) {
+				if(results[0] && results[1].clearance == 2){
+					$("#createClass").show();
+				}
+			});
+			//$("#class-features").show();
+			//$("#chooseCourse").show();
 		}
 	});
 
