@@ -38,7 +38,7 @@ $(document).ready(function () {
       
 			var token = document.cookie;
 			$.post("/checkToken", {token: token}, function(results) {
-				if(results[0] && results[1].clearance == 2){
+				if(results[0] && results[1].clearance >= 2){
 					$("#createClass").show();
 				}
 			});
@@ -206,6 +206,13 @@ $(document).ready(function () {
 	});
 	
 	function classComment(checkPost) {
+		var token = document.cookie;
+		var auth = false;
+		$.post("/checkToken", {token: token}, function(results) {
+			if(results[0] && results[1].clearance >= 2){
+				auth = true;
+			}
+		});
 		$.post("/classCommentGet/", {parent: checkPost}, function(data) {
 			
 			var div = document.getElementById("comment-placeholder");
@@ -231,14 +238,6 @@ $(document).ready(function () {
 				var linebreak1 = document.createElement("br");
 				list.appendChild(linebreak1);
 
-				//Set attributes
-				/* var listinstance = document.createElement("input");
-				listinstance.removeAttribute("type");
-				listinstance.setAttribute("name","comment");
-				listinstance.setAttribute("value",(data[i].id).toString()); //only the number for post request later
-				 */
-				//list.appendChild(listinstance);
-				
 				var label = document.createElement("label");
 				label.setAttribute("for",id);				
 
@@ -248,10 +247,23 @@ $(document).ready(function () {
 				var linebreak2 = document.createElement("br");
 				list.appendChild(linebreak2);
 				
-
+				if(auth){
+					var listinstance = document.createElement("BUTTON");
+					listinstance.setAttribute("name","Delete");
+					listinstance.setAttribute("value",(data[i].id).toString()); //only the number for post request later
+					listinstance.innerHTML = "Delete";
+					listinstance.setAttribute("class", "deleteButtonPost");
+					listinstance.setAttribute("onclick", "deleteComment(this.value)");
+					list.appendChild(listinstance);
+				}
 				div.appendChild(list);
 			}
 		});
 	}
 });
 
+function deleteComment(id) {
+	$.post("/deleteComment", {id: id},
+	function(results){
+	});
+}
