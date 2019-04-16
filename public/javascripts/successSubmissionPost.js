@@ -37,7 +37,7 @@ function submitClickPost() {
 	// Make the  input consistent 
 	var textPostTitle = $("#title").val();
 	var textPostBody = $("#text").val();
-	var parent = $("#class-placeholder").text();
+	var parent = $("#class-placeholder-title").text();
 		
 	// If statement to determine if vegan was detected, or to proceed.
 	if (!validateSubmissionPost(textPostTitle, textPostBody)) {
@@ -57,7 +57,8 @@ function submitClickPost() {
 					var id = ~~((Math.random() * 100000000) + 1000);
 					$.post("/postPost", {title: textPostTitle, body: textPostBody, parent: parent, user: result[1].user, id: id}, function(result){ });
 					
-					var delayInMilliseconds = 1000; //1 second
+					$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
+					/* var delayInMilliseconds = 1000; //1 second
 
 					setTimeout;
 					
@@ -103,7 +104,7 @@ function submitClickPost() {
 							
 							});
 						} //end function
-					}, delayInMilliseconds);
+					}, delayInMilliseconds); */
 				}
 			});
 		}

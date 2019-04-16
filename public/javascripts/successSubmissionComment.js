@@ -44,8 +44,10 @@ function submitClickComment() {
 				else{
 					var id = ~~((Math.random() * 100000000) + 1000);
 					$.post("/postComment", {body: comment, parent: parent, user: result[1].user, id: id}, function(result){ });
-				
-					//Delay needed or else it will get the post too early and wont have the new comment
+					
+					$("#newClassTitleComment").replaceWith("<h3> <br> &nbsp Comment has been submitted. <br> </h3>" );
+
+					/* //Delay needed or else it will get the post too early and wont have the new comment
 					var delayInMilliseconds = 1000; //1 second
 
 					//Call function to display new comment LIVE
@@ -70,7 +72,7 @@ function submitClickComment() {
 							
 							//Create ID for the element
 							var id = "my" + (indexNewComment).toString + "Div";
-							var name = document.createElement("div");
+							var name = document.createElement("label");
 							name.innerHTML = (newComment.user).toString();
 							list.appendChild(name);
 
@@ -82,8 +84,8 @@ function submitClickComment() {
 							listinstance.setAttribute("type","checkbox");
 							listinstance.setAttribute("name","comment");
 							listinstance.setAttribute("value",(newComment.id).toString()); //only the number for post request later
-							 */
-							//list.appendChild(listinstance);
+							
+							list.appendChild(listinstance);
 							
 							var label = document.createElement("label");
 							label.setAttribute("for",id);
@@ -93,11 +95,11 @@ function submitClickComment() {
 							var linebreak2 = document.createElement("br");
 							list.appendChild(linebreak2);
 							
-							$("#commentButtonsPopup").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
+							$("#newClassTitleComment").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
 						
 						});
 					  }
-					}, delayInMilliseconds);
+					}, delayInMilliseconds); */
 
 				
 				}
