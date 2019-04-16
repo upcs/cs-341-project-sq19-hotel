@@ -52,8 +52,6 @@ body {
 
 .listTopic {
     padding-left: 0;
-	/* column-fill: balance; */
-
 }
 
 .topicCol {
@@ -71,7 +69,11 @@ body {
 	border-radius: 5px;
 	background: white;
 	box-shadow: 2px 4px lightgray;
+}
 
+.topic:hover { 
+  background-color: #25205e;
+  color: white;
 }
 
 /* Subjects */
@@ -86,22 +88,43 @@ body {
 	box-shadow: 2px 4px lightgray;
 }
 
-/* Posts */
+.subjectDiv:hover { 
+  background-color: #25205e;
+  color: white;
+}
 
+#class-placeholder-title {
+	margin: 0.5%;
+	padding: 1% 2% 1%;
+	font-size: 15pt;
+	font-weight: bold;
+}
+
+/* Posts */
 
 .postDiv {
 	border: 2px solid black;
 	margin: 0.5%;
 	padding: 1% 2% 1%;
 	border-spacing: 10%;
-	background: #f2f2f2;
+	background: white;
 	box-shadow: 2px 4px lightgray;
+}
 
+.postDiv:hover {
+  background-color: #25205e;
+  color: white;	
 }
 
 /* Comments */
 
-.commentDiv {
+
+/* Top info */
+#post-placeholder-id {
+	color: white;
+}
+
+#post-placeholder-title {
 	border: 2px solid black;
 	margin: 1%;
 	border-radius: 1%;
@@ -109,8 +132,44 @@ body {
 	border-spacing: 10%;
 	background: #f2f2f2;
 	box-shadow: 2px 4px gray;
+	font-weight: bold;
+	font-size: 15pt;
+}
+
+#user-placeholder {
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	/*margin: 1%;*/
+	/* border-radius: 1%; */
+	padding: 1% 2% 1%;
+	border-spacing: 10%;
+	background: white;
+	color: blue;
+}
+
+#post-placeholder-body {
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	border-bottom: 3px solid black;
+
+	/*margin: 1%;*/
+	/* border-radius: 1%; */
+	padding: 1% 2% 1%;
+	border-spacing: 10%;
+	background: white;
 
 }
+
+.commentDiv {
+	border: 2px solid black;
+	margin: 1%;
+	border-radius: 1%;
+	padding: 1% 2% 1%;
+	border-spacing: 10%;
+	background: white;
+	box-shadow: 2px 4px gray;
+}
+
 
 .userNamePost {
 	border: 2px solid black;
@@ -118,8 +177,10 @@ body {
 	border-radius: 1%;
 	padding: 1% 1% 1%;
 	border-spacing: 5%;
-	background: lightgray;
+	background: #25205e;
+	color: white;
 }
+
 #loggedIn {
 	color: blue;
 }

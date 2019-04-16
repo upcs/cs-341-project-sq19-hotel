@@ -26,7 +26,16 @@ $(document).ready(function () {
 			//Class Courses shown for now
 			$("#post-features").hide();
 			$("#comment-features").hide();
-			$("#createClass").hide();
+			$("#post-placeholder-title").hide();
+			$("#user-placeholder").hide();
+			$("#post-placeholder-body").hide();
+			$("#class-placeholder-title").hide();
+
+
+			$("#class-features").show();
+			$("#chooseCourse").show();  
+      $("#createClass").hide();
+      
 			var token = document.cookie;
 			$.post("/checkToken", {token: token}, function(results) {
 				if(results[0] && results[1].clearance == 2){
@@ -101,8 +110,11 @@ $(document).ready(function () {
 			classPost(checkedClassNum);
 			
 			//REPLACE ALL Class information with Post information
-			$("#class-placeholder").html(checkedClassNum.toString());
-					
+			$("#class-placeholder-title").html(checkedClassNum.toString());
+			
+			
+			$("#class-placeholder-title").show();
+			$("#class-placeholder").hide();
 			$("#class-features").hide();
 			$("#chooseCourse").hide();
 			$("#comment-features").hide();
@@ -167,7 +179,10 @@ $(document).ready(function () {
 			$("#post-features").hide();		
 			$("#post-placeholder").show();
 			$("#comment-features").show();
+			
+			$("#post-placeholder-title").show();
 			$("#user-placeholder").show();
+			$("#post-placeholder-body").show();
 		
  			var getPostId = checkPost.substring(0,checkPost.indexOf("\n"));
 			var getPostTitle = checkPost.substring(checkPost.indexOf("\n"),checkPost.indexOf("\n \n"));
@@ -236,11 +251,7 @@ $(document).ready(function () {
 
 				div.appendChild(list);
 			}
-			
-			
-			
 		});
 	}
-
 });
 
