@@ -132,27 +132,31 @@ body {
 	border-spacing: 10%;
 	background: #f2f2f2;
 	box-shadow: 2px 4px gray;
+	font-weight: bold;
+	font-size: 15pt;
 }
 
 #user-placeholder {
-	border: 2px solid black;
-	margin: 1%;
-	border-radius: 1%;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	/*margin: 1%;*/
+	/* border-radius: 1%; */
 	padding: 1% 2% 1%;
 	border-spacing: 10%;
-	background: #25205e;
-	box-shadow: 2px 4px gray;
-	color: white;
+	background: white;
+	color: blue;
 }
 
 #post-placeholder-body {
-	border: 2px solid black;
-	margin: 1%;
-	border-radius: 1%;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	border-bottom: 3px solid black;
+
+	/*margin: 1%;*/
+	/* border-radius: 1%; */
 	padding: 1% 2% 1%;
 	border-spacing: 10%;
-	background: #lightgray;
-	box-shadow: 2px 4px gray;
+	background: white;
 
 }
 

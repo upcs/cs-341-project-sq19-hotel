@@ -37,7 +37,7 @@ function submitClickPost() {
 	// Make the  input consistent 
 	var textPostTitle = $("#title").val();
 	var textPostBody = $("#text").val();
-	var parent = $("#class-placeholder").text();
+	var parent = $("#class-placeholder-title").text();
 		
 	// If statement to determine if vegan was detected, or to proceed.
 	if (!validateSubmissionPost(textPostTitle, textPostBody)) {
@@ -58,34 +58,35 @@ function submitClickPost() {
 					var id = ~~((Math.random() * 100000000) + 1000);
 					$.post("/postPost", {title: textPostTitle, body: textPostBody, parent: parent, user: result[1].user, id: id}, function(result){ });
 					
-					var delayInMilliseconds = 1000; //1 second
+					$("#newPost").replaceWith("<h3> <br> Post has been submitted. <br> </h3>" );
+					/* var delayInMilliseconds = 1000; //1 second
 
-					/* setTimeout;
+					setTimeout;
 					
 					setTimeout(function() {
-					  // code to be executed after 1 second
+					  //code to be executed after 1 second
 					  
 					  classPost(parent);
 
-						// Depending on the number of times you click the options is how many times it prints the results???
+						//Depending on the number of times you click the options is how many times it prints the results???
 						function classPost(checkedClassNum) {
-							// Put another post request here
+							//Put another post request here
 							$.post("/classPostsGet/", {parent: checkedClassNum}, function(data) {
 
-								// This is what will be replaced in the html
+								//This is what will be replaced in the html
 								var list = document.getElementById("post-placeholder");
 								
 								indexNewPost = data.length-1;
-								// Go to the last element added 
+								//Go to the last element added 
 								newPost = data[(indexNewPost)];
 							
-								// console.log("data posts", data.length);
-								// Create ID for the element
+								//console.log("data posts", data.length);
+								//Create ID for the element
 								var id = "my" + indexNewPost.toString() + "Div";
 							
 								var listinstance = document.createElement("input");
 								
-								// Set attributes
+								//Set attributes
 								listinstance.setAttribute("type","radio");
 								listinstance.setAttribute("name","post");
 								listinstance.setAttribute("value", newPost.id + "\n" + newPost.title + "\n \n" + newPost.body + "\n \n \n" + newPost.user);

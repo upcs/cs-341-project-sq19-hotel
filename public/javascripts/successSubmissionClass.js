@@ -71,7 +71,7 @@ function submitClick() {
 					$.post("/postNewClass", {department: textCourseAb, number: textCourseNum, name: textCourseName}, function(result){ });
 					//if(result){
 					console.log("New Class complete");
-					$('#newClassTitle').replaceWith("Course Added!");
+					$('#newClassTitle').replaceWith("<h3> <br> Course Added! <br> <h3>");
 					//}
 					//else{
 					//	alert("There was a problem creating the class.");

@@ -241,11 +241,7 @@ $(document).ready(function () {
 
 				div.appendChild(list);
 			}
-			
-			
-			
 		});
 	}
-
 });
 

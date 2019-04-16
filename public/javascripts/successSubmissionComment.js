@@ -44,8 +44,10 @@ function submitClickComment() {
 				else{
 					var id = ~~((Math.random() * 100000000) + 1000);
 					$.post("/postComment", {body: comment, parent: parent, user: result[1].user, id: id}, function(result){ });
-				
-					//Delay needed or else it will get the post too early and wont have the new comment
+					
+					$("#newClassTitleComment").replaceWith("<h3> <br> &nbsp Comment has been submitted. <br> </h3>" );
+
+					/* //Delay needed or else it will get the post too early and wont have the new comment
 					var delayInMilliseconds = 1000; //1 second
 
 					//Call function to display new comment LIVE
@@ -82,7 +84,7 @@ function submitClickComment() {
 							listinstance.setAttribute("type","checkbox");
 							listinstance.setAttribute("name","comment");
 							listinstance.setAttribute("value",(newComment.id).toString()); //only the number for post request later
-							 */
+							
 							list.appendChild(listinstance);
 							
 							var label = document.createElement("label");
@@ -97,7 +99,7 @@ function submitClickComment() {
 						
 						});
 					  }
-					}, delayInMilliseconds);
+					}, delayInMilliseconds); */
 
 				
 				}
