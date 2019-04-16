@@ -70,7 +70,7 @@ function submitClickComment() {
 							
 							//Create ID for the element
 							var id = "my" + (indexNewComment).toString + "Div";
-							var name = document.createElement("div");
+							var name = document.createElement("label");
 							name.innerHTML = (newComment.user).toString();
 							list.appendChild(name);
 
@@ -83,7 +83,7 @@ function submitClickComment() {
 							listinstance.setAttribute("name","comment");
 							listinstance.setAttribute("value",(newComment.id).toString()); //only the number for post request later
 							 */
-							//list.appendChild(listinstance);
+							list.appendChild(listinstance);
 							
 							var label = document.createElement("label");
 							label.setAttribute("for",id);
@@ -93,7 +93,7 @@ function submitClickComment() {
 							var linebreak2 = document.createElement("br");
 							list.appendChild(linebreak2);
 							
-							$("#commentButtonsPopup").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
+							$("#newClassTitleComment").replaceWith("<h3> <br> Comment has been submitted. <br> </h3>" );
 						
 						});
 					  }

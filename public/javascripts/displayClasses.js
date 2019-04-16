@@ -28,7 +28,6 @@ $(document).ready(function () {
 			$("#comment-features").hide();
 			$("#post-placeholder-title").hide();
 			$("#user-placeholder").hide();
-			$("#post-placeholder-id").hide();	
 			$("#post-placeholder-body").hide();
 			$("#class-placeholder-title").hide();
 
@@ -168,10 +167,9 @@ $(document).ready(function () {
 		}
 		else {
 			$("#post-features").hide();		
-			$("#post-placeholder").hide();
+			$("#post-placeholder").show();
 			$("#comment-features").show();
 			
-			$("#post-placeholder-id").show();	
 			$("#post-placeholder-title").show();
 			$("#user-placeholder").show();
 			$("#post-placeholder-body").show();
@@ -185,7 +183,7 @@ $(document).ready(function () {
 			//console.log(getPostBody);
 			
 
-			$("#post-placeholder-id").html((getPostId).toString());
+			$("#post-placeholder").html((getPostId).toString());
  			$("#post-placeholder-title").html((getPostTitle + "\n").toString());
 			$("#user-placeholder").html((getPostUser).toString());
 			$("#post-placeholder-body").html((getPostBody).toString());

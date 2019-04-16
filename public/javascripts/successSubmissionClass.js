@@ -65,16 +65,17 @@ function submitClick() {
 				if(!result[0]){
 					$("#newClassTitle").replaceWith("<h3> <br> Please login first! <br> </h3>" );
 				}
-				else{
-					$.post("/postNewClass", {department: textCourseAb, number: textCourseNum, name: textCourseName}, function(result){
-						if(result){
-							console.log("New Class complete");
-							$('#newClassTitle').replaceWith("Course Added!");
-						}
-						else{
-							alert("There was a problem creating the class.");
-						}
-					});
+				else {
+					//alert("posting class");
+					//console.log("posting class");
+					$.post("/postNewClass", {department: textCourseAb, number: textCourseNum, name: textCourseName}, function(result){ });
+					//if(result){
+					console.log("New Class complete");
+					$('#newClassTitle').replaceWith("Course Added!");
+					//}
+					//else{
+					//	alert("There was a problem creating the class.");
+					//}
 				}
 			});
 		}
