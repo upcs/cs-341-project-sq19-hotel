@@ -24,9 +24,9 @@ router.post('/', function(req, res, next) {
 				user: results[0].user,
 				clearance: results[0].clearance
 			}, 'secret', {expiresIn: '1h'});
-			return res.status(200).send([true, token]);
+			return res.send([true, token]);
 		}
-		return res.status(401).send(false);
+		return res.send([false]);
 	});
 });
 

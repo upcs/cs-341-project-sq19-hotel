@@ -8,19 +8,11 @@
 
 //Function that is actually tested using jest and codecov
 function validateSubmission(email, pass) {
-	if(email === "" || pass === "") {
-		return false;
-	}
-	
-	//Does email have up.edu extension?
-/* 	else if(email.includes("@up.edu")) {
-		console.log(textCourseAb.length);
-		console.log('failed, wrong length');
-		return false;
-	} */
-	else { //Passes everything
+	var emailPatt = new RegExp("[a-z]+[1-2]?[0-9]?@up.edu");
+	var passPatt = new RegExp(".+");
+	if(emailPatt.test(email) && passPatt.test(pass))
 		return true;
-	}
+	return false;
 }
 
 function checkToken(){
@@ -52,6 +44,7 @@ function submitClick() {
 			if(result[0] == true){
 				$("#loginRow").replaceWith("<h3> <br> Login Successful! <br> </h3>" );
 				document.cookie = result[1] + "; path=/";
+				window.location.href = "../index.html";
 			}
 			else{
 				alert("Incorrect email or password");
