@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
 	var token = req.body.token;
 	if(token == null || token == ""){
 		console.log('Token is empty');
-		return res.status(401).send([false, null]);
+		return res.send([false, null]);
 	}
 	try{
 		console.log('Verifying and decoding token.');
@@ -24,13 +24,13 @@ router.post('/', function(req, res, next) {
 		console.log(d.getTime()/1000);
 		if(decoded.exp < d.getTime()/1000){
 			console.log("Expired token");
-			return res.status(401).send([false, decoded]);
+			return res.send([false, decoded]);
 		}
 		return res.send([true, decoded]);
 	}
 	catch(err){
 		console.log(err);
-		return res.status(401).send([false, null]);
+		return res.send([false, null]);
 	}
 });
 

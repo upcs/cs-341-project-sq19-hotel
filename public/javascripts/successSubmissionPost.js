@@ -50,7 +50,6 @@ function submitClickPost() {
 			$("#newPost").replaceWith("<h3> <br> Please sign up or log in first! <br> </h3>" );
 		else{
 			$.post("/checkToken", {token: token}, function(result){
-				console.log(result);
 				if(!result[0]){
 					$("#newPost").replaceWith("<h3> <br> Please sign up or log in first! <br> </h3>" );
 				}
