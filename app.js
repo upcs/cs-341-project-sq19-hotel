@@ -9,13 +9,12 @@ var newAccountRouter = require('./routes/postSignup');
 var newPostRouter = require('./routes/postPost');
 var newClassRouter = require('./routes/postNewClass');
 var newCommentRouter = require('./routes/postComment');
-
 var loginRouter = require('./routes/postLogin');
 var newClassGetRouter = require('./routes/classesGet');
 var classPostGetRouter = require('./routes/classPostsGet');
 var classCommentGetRouter = require('./routes/classCommentGet');
-
 var checkTokenRouter = require('./routes/checkToken');
+var deleteCommentRouter = require('./routes/deleteComment');
 
 var app = express();
 
@@ -34,13 +33,12 @@ app.use('/', indexRouter);
 app.use('/postPost', newPostRouter);
 app.use('/postNewClass', newClassRouter);
 app.use('/postComment', newCommentRouter);
-
 app.use('/postLogin', loginRouter);
 app.use('/classesGet', newClassGetRouter);
 app.use('/classPostsGet', classPostGetRouter);
 app.use('/classCommentGet', classCommentGetRouter);
-
 app.use('/checkToken', checkTokenRouter);
+app.use('/deleteComment', deleteCommentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
