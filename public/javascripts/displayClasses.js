@@ -208,9 +208,13 @@ $(document).ready(function () {
 	function classComment(checkPost) {
 		var token = document.cookie;
 		var auth = false;
+		var user = null;
 		$.post("/checkToken", {token: token}, function(results) {
-			if(results[0] && results[1].clearance >= 2){
-				auth = true;
+			if(results[0]){
+				user = results[1].user;
+				if(results[1].clearance >= 2){
+					auth = true;
+				}
 			}
 		});
 		$.post("/classCommentGet/", {parent: checkPost}, function(data) {
@@ -247,7 +251,7 @@ $(document).ready(function () {
 				var linebreak2 = document.createElement("br");
 				list.appendChild(linebreak2);
 				
-				if(auth){
+				if(auth || user == (data[i].user).toString()){
 					var listinstance = document.createElement("BUTTON");
 					listinstance.setAttribute("name","Delete");
 					listinstance.setAttribute("value",(data[i].id).toString()); //only the number for post request later
