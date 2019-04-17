@@ -6,9 +6,9 @@ $(document).ready(function () {
 	$("#specificCourses").hide();
 	
 	//What happens when the button is clicked
-	$("#submitSubject").click(function() {
-		
-		var checkedClassSubject = $('input[name=subject]:checked').val(); 
+	$(".topic").click(function() {
+		var checkedClassSubject = $(this).attr('id'); // or var clickedBtnID = this.id
+		//alert(checkedClassSubject);
 
 		//If statement that makes the user select a class so it is not undefined
 		if (checkedClassSubject == null) {
@@ -34,7 +34,7 @@ $(document).ready(function () {
 
 			$("#class-features").show();
 			$("#chooseCourse").show();  
-      $("#createClass").hide();
+			$("#createClass").hide();
       
 			var token = document.cookie;
 			$.post("/checkToken", {token: token}, function(results) {
@@ -48,12 +48,11 @@ $(document).ready(function () {
 	});
 
 	function classesGet(checkedClassSubject) {
-		
 		//Declare variable later for both post requests
 		$.post("/classesGet/", {department: checkedClassSubject}, function(data) {
 
 			//This is what will be replaced in the html
-			var div = document.getElementById("class-placeholder");
+			var divTotal = document.getElementById("class-placeholder");
 
 			//Run for loop to go through and create elements for each class
 			for(i = 0 ; i < data.length; i++)
@@ -63,20 +62,23 @@ $(document).ready(function () {
 				var id = "my" + i.toString() + "Div";
 				//alert(data[i].number);
 				
-				
 				var list = document.createElement("div");
 				list.setAttribute("class", "subjectDiv");
+				//list.setAttribute("onclick", classButtonClicked((data[i].department).toString() + " " + (data[i].number).toString()));
 
-				var listinstance = document.createElement("input");
+				divTotal.appendChild(list);
+
+				//var listinstance = document.createElement("input");
 				
 				//Set attributes
-				listinstance.setAttribute("type","radio");
-				listinstance.setAttribute("name","classes");
-				listinstance.setAttribute("id",id);
-				listinstance.setAttribute("value",(data[i].department).toString() + " " + (data[i].number).toString()); //only the number for post request later
-				
-				list.appendChild(listinstance);
-				
+
+				list.setAttribute("name","classes");
+				list.setAttribute("id",id);
+				list.setAttribute("value",(data[i].department).toString() + " " + (data[i].number).toString()); //only the number for post request later
+			
+				//console.log("total " +  divTotal.class);
+				//console.log("sub" + list.class);
+
 				//Put in the courses from database
 				//&nbsp is a space
 				var label = document.createElement("label");
@@ -87,16 +89,27 @@ $(document).ready(function () {
 				var linebreak = document.createElement("br");
 				list.appendChild(linebreak);
 				
-				div.appendChild(list);
+				divTotal.appendChild(list);
 				
+				classButtonClicked(value);
+				//console.log(subjectDiv);
+
 			}
+			//div.setAttribute("onclick", classButtonClicked((data.department) + " " + (data.number)));
+
 		});
 	}
-
+	
 	//What happens when the button is clicked
-	$("#submitClass").click(function() {
+	function classButtonClicked(checkedClassNum) {
+
+	$(".subjectDiv").click(function() {
 		
-		var checkedClassNum = $('input[name=classes]:checked').val(); 
+		alert("class clicked");
+		
+		var checkedClassNum = $(this).val(); 
+
+		//var checkedClassNum = $('input[name=classes]:checked').val(); 
 		
 		//Must select a course so it is not null
 		if (checkedClassNum == null) {
@@ -122,6 +135,7 @@ $(document).ready(function () {
 			$("#post-features").show();
 		}
 	});
+	}
 	
 	//Depending on the number of times you click the options is how many times it prints the results???
 	function classPost(checkedClassNum) {
