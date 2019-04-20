@@ -13,6 +13,9 @@ router.post('/', function(req, res, next) {
 	dbms.dbquery("DELETE FROM posts WHERE id = '" + id + "';",
 	function(error, results) {
 	});
+	dbms.dbquery("DELETE FROM posts WHERE parent = '" + id + "';",
+	function(error, results) {
+	});
 });
 
 module.exports = router;

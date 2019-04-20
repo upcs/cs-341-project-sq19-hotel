@@ -132,12 +132,19 @@ function classClicked(checkedClassNum) {
 }	
 function classPost(checkedClassNum) {
 	//Put another post request here
+	var auth = false;
+	$.post("/checkToken", {token: document.cookie}, function(results) {
+		if(results[0]){
+			if(results[1].clearance >= 2){
+				auth = true;
+			}
+		}
+	});
 	$.post("/classPostsGet/", {parent: checkedClassNum}, function(data) {
 
 		//This is what will be replaced in the html
 		var div = document.getElementById("post-placeholder");
-		
-		//Run for loop to go through and create elements for each class
+				//Run for loop to go through and create elements for each class
 		for(i = 0 ; i < data.length; i++)
 		{
 			//console.log("data posts", data.length);
@@ -153,49 +160,52 @@ function classPost(checkedClassNum) {
 			var label = document.createElement("label");
 			label.setAttribute("for",id);
 			label.innerHTML = ("&nbsp" + data[i].title + " - " + data[i].body).toString();
-			list.setAttribute("data-id",data[i].id + "\n" + data[i].title + "\n \n" + data[i].body + "\n \n \n" + data[i].user)
+			list.setAttribute("data-info",data[i].id + "\n" + data[i].title + "\n \n" + data[i].body + "\n \n \n" + data[i].user)
 			list.appendChild(label);
 			
 			var linebreak = document.createElement("br");
 			list.appendChild(linebreak);
-			list.setAttribute("onclick","selectPost($(this).data('id'))");
+			list.setAttribute("onclick","selectPost($(this).data('info'))");
 			div.appendChild(list);
+			if(auth){
+				var listinstance = document.createElement("BUTTON");
+				listinstance.setAttribute("name","Delete");
+				listinstance.setAttribute("value",(data[i].id).toString()); //only the number for post request later
+				listinstance.innerHTML = "Delete";
+				listinstance.setAttribute("class", "deleteButtonPost");
+				listinstance.setAttribute("onclick", "deleteComment(this.value)");
+				div.appendChild(listinstance);
+			}
 		}
 	});
 } //end function
 
 function selectPost(checkPost) {
-	if (checkPost == undefined || checkPost == null) {
-		alert("Please Select a Post");
-		return;
-	}
-	else {
-		$("#post-features").hide();		
-		$("#post-placeholder").show();
-		$("#comment-features").show();
-		
-		$("#post-placeholder-title").show();
-		$("#user-placeholder").show();
-		$("#post-placeholder-body").show();
+	$("#post-features").hide();		
+	$("#post-placeholder").show();
+	$("#comment-features").show();
+
+	$("#post-placeholder-title").show();
+	$("#user-placeholder").show();
+	$("#post-placeholder-body").show();
+
+ 	var getPostId = checkPost.substring(0,checkPost.indexOf("\n"));
+	var getPostTitle = checkPost.substring(checkPost.indexOf("\n"),checkPost.indexOf("\n \n"));
+	var getPostUser = checkPost.substring(checkPost.indexOf("\n \n \n"),checkPost.length);
+	var getPostBody = checkPost.substring(checkPost.indexOf("\n \n"),checkPost.indexOf("\n \n \n"));
 	
- 		var getPostId = checkPost.substring(0,checkPost.indexOf("\n"));
-		var getPostTitle = checkPost.substring(checkPost.indexOf("\n"),checkPost.indexOf("\n \n"));
-		var getPostUser = checkPost.substring(checkPost.indexOf("\n \n \n"),checkPost.length);
-		var getPostBody = checkPost.substring(checkPost.indexOf("\n \n"),checkPost.indexOf("\n \n \n"));
-		
-		//console.log(getPostTitle);
-		//console.log(getPostBody);
-		
+	//console.log(getPostTitle);
+	//console.log(getPostBody);
+	
 
-		$("#post-placeholder").html((getPostId).toString());
- 		$("#post-placeholder-title").html((getPostTitle + "\n").toString());
-		$("#user-placeholder").html((getPostUser).toString());
-		$("#post-placeholder-body").html((getPostBody).toString());
+	$("#post-placeholder").html((getPostId).toString());
+ 	$("#post-placeholder-title").html((getPostTitle + "\n").toString());
+	$("#user-placeholder").html((getPostUser).toString());
+	$("#post-placeholder-body").html((getPostBody).toString());
 
-		//REPLACE ALL post information with comment information
-		//Call function that shows the corresponding comments
-		classComment(getPostId);
-	}
+	//REPLACE ALL post information with comment information
+	//Call function that shows the corresponding comments
+	classComment(getPostId);
 }
 
 function classComment(checkPost) {
