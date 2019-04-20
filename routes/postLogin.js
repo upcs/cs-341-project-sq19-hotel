@@ -19,11 +19,22 @@ router.post('/', function(req, res, next) {
 	function(error, results) {
 		if(results[0] != undefined){
 			console.log("User found!");
-			var token = jwt.sign({
-				email: email,
-				user: results[0].user,
-				clearance: results[0].clearance
-			}, 'secret', {expiresIn: '1h'});
+			if(!req.body.stay){
+				console.log("One hour login");
+				var token = jwt.sign({
+					email: email,
+					user: results[0].user,
+					clearance: results[0].clearance
+				}, 'secret', {expiresIn: '1h'});
+			}
+			else{
+				console.log("One year login?!");
+				var token = jwt.sign({
+					email: email,
+					user: results[0].user,
+					clearance: results[0].clearance
+				}, 'secret', {expiresIn: '1y'});
+			}
 			return res.send([true, token]);
 		}
 		return res.send([false]);
