@@ -33,13 +33,15 @@ function submitClick() {
 	// Make the  input consistent 
 	var email = $("#loginEmail").val();
 	var pass = $("#loginPassword").val();
-		
+	var stay = false;
+	if(document.getElementById("stayLoggedIn").checked)
+		stay = true;
 	// If statement to determine if vegan was detected, or to proceed.
 	if (!validateSubmission(email, pass)) {
 		alert("Login information is invalid, try again.");	
 	}
 	else {
-		$.post("/postLogin", {email: email, pass: pass},
+		$.post("/postLogin", {email: email, pass: pass, stay: stay},
 		function(result){
 			if(result[0] == true){
 				$("#loginRow").replaceWith("<h3> <br> Login Successful! <br> </h3>" );
